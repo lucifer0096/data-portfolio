@@ -75,7 +75,7 @@ Analyse game-by-game NBA player box-score data to identify high-impact players, 
 
 ## How to use
 
-- Open the Excel workbook in this folder (for example, `NBA 2k24-25 Analysis Project.xlsb`).  
+- Open the Excel workbook in this folder (`NBA 2k24-25 Analysis Project.xlsb`).  
 - Start with **Info_NBA** for the project overview, dataset summary, and navigation.  
 - Use **NBA_Working** to review cleaned data and engineered columns.  
 - Explore **Player_Summary** and **Pivots_NBA** to drill into player- and role-level pivots.  
