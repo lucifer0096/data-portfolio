@@ -63,7 +63,7 @@ Analyse online retail transactions to understand product performance, sales timi
 
 ## How to use
 
-- Open the Excel workbook in this folder (for example, `OnlineRetail Project.xlsx`).  
+- Open the Excel workbook in this folder (`OnlineRetail Project.xlsx`).  
 - Start with the **Info** tab for project overview, dataset summary, key insights, and navigation.  
 - Use **Online Retail Full Dataset** to review raw transactional data.  
 - Explore **Online Retail Working Dataset** for cleaned data and exploratory pivots (top products, sales by day/hour, country, repeat customers).  
