@@ -9,7 +9,7 @@ Portfolio of analytics projects by **Rahul Bhaskaran**, showcasing end‑to‑en
 - **Name:** Rahul Bhaskaran  
 - **Role:** Data Analyst / Application Specialist  
 - **Location:** New Zealand · India  
-- **GitHub:** https://github.com/lucifer0096  
+- **GitHub:** (https://github.com/lucifer0096/data-portfolio) 
 
 This repository collects personal and practice projects used to build skills in data analysis, visualization, and analytics consulting.
 
