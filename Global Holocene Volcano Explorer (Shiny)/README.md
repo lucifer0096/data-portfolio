@@ -7,7 +7,7 @@ Interactive Shiny application built on the Smithsonian Institution Global Volcan
 ## Dataset
 
 - **Source:** Global Volcanism Program, Smithsonian Institution – “Volcanoes of the World (v. 5.3.2; 30 Sep 2025)” Holocene volcano list. Accessed via the Holocene Volcano search page: https://volcano.si.edu/search_volcano.cfm. 
-- **Citation (recommended by GVP):**  
+- **Citation :**  
   Global Volcanism Program, 2025. *Volcanoes of the World* (v. 5.3.2; 30 Sep 2025). Smithsonian Institution, compiled by Venzke, E. https://doi.org/10.5479/si.GVP.VOTW5-2025.5.3.
 - **Scope:** Global coverage of Holocene volcanoes (last ~10,000 years) with geographic, tectonic, and descriptive attributes.
 - **Key fields used in this app:**  
