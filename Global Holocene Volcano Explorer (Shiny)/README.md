@@ -1,15 +1,15 @@
 # Global Holocene Volcanoes – Interactive Risk & Glossary Map (Shiny)
 
-Interactive Shiny application built on the Smithsonian Institution Global Volcanism Program Holocene volcano list, allowing users to explore volcanoes worldwide, filter by activity evidence and a simple risk band, and view structured glossary information about key volcanic terms. [web:112][file:1]
+Interactive Shiny application built on the Smithsonian Institution Global Volcanism Program Holocene volcano list, allowing users to explore volcanoes worldwide, filter by activity evidence and a simple risk band, and view structured glossary information about key volcanic terms.
 
 ---
 
 ## Dataset
 
-- **Source:** Global Volcanism Program, Smithsonian Institution – “Volcanoes of the World (v. 5.3.2; 30 Sep 2025)” Holocene volcano list. Accessed via the Holocene Volcano search page: https://volcano.si.edu/search_volcano.cfm. [web:112][file:1]  
+- **Source:** Global Volcanism Program, Smithsonian Institution – “Volcanoes of the World (v. 5.3.2; 30 Sep 2025)” Holocene volcano list. Accessed via the Holocene Volcano search page: https://volcano.si.edu/search_volcano.cfm. 
 - **Citation (recommended by GVP):**  
-  Global Volcanism Program, 2025. *Volcanoes of the World* (v. 5.3.2; 30 Sep 2025). Smithsonian Institution, compiled by Venzke, E. https://doi.org/10.5479/si.GVP.VOTW5-2025.5.3. [file:1]  
-- **Scope:** Global coverage of Holocene volcanoes (last ~10,000 years) with geographic, tectonic, and descriptive attributes. [web:112][file:1]  
+  Global Volcanism Program, 2025. *Volcanoes of the World* (v. 5.3.2; 30 Sep 2025). Smithsonian Institution, compiled by Venzke, E. https://doi.org/10.5479/si.GVP.VOTW5-2025.5.3.
+- **Scope:** Global coverage of Holocene volcanoes (last ~10,000 years) with geographic, tectonic, and descriptive attributes.
 - **Key fields used in this app:**  
   - Location: `Country`, `Latitude`, `Longitude`, `Volcanic Region Group`, `Volcanic Region`.  
   - Morphology: `Volcano Landform`, `Primary Volcano Type`.  
@@ -22,16 +22,16 @@ A derived **Risk** field is created in this project as a simple band (High / Med
 
 ## Tools & skills
 
-- **R** for data handling and reactive programming. [web:115][web:116]  
-- **Shiny** for building the multi‑tab interactive web application (map plus glossary). [web:116]  
-- **Leaflet** for interactive web mapping, markers, clustering, and legends. [web:116][web:119]  
+- **R** for data handling and reactive programming.
+- **Shiny** for building the multi‑tab interactive web application (map plus glossary).
+- **Leaflet** for interactive web mapping, markers, clustering, and legends. 
 - Data cleaning and feature engineering in R (creating the `Risk` band and preparing the `volcanos.csv` input file).
 
 ---
 
 ## Business / analysis questions
 
-- Where are Holocene volcanoes located globally, and how do they cluster by country and tectonic setting? [web:112][file:1]  
+- Where are Holocene volcanoes located globally, and how do they cluster by country and tectonic setting? 
 - How does the distribution of volcanoes change when filtered by activity evidence or simple risk band?  
 - How can key volcanic terms (landform, primary type, tectonic setting, activity evidence) be presented clearly for non‑experts while exploring the map?
 
@@ -40,7 +40,7 @@ A derived **Risk** field is created in this project as a simple band (High / Med
 ## Approach
 
 1. **Data preparation**  
-   - Downloaded the Holocene volcano list from the Global Volcanism Program search interface and exported it to a CSV (`volcanos.csv`) for use in R. [web:112][file:1]  
+   - Downloaded the Holocene volcano list from the Global Volcanism Program search interface and exported it to a CSV (`volcanos.csv`) for use in R.
    - Imported the CSV into R without altering original column names (to retain spaces used in the GVP schema).  
    - Created a derived `Risk` variable from `Activity Evidence`, grouping volcanoes into High, Medium, Low, and Unknown bands for easier communication in the map.
 
@@ -58,7 +58,7 @@ A derived **Risk** field is created in this project as a simple band (High / Med
    - Displayed a dynamic summary text (`Volcanoes shown: n`) above the map to clarify current filter impact.
 
 4. **Mapping & visualisation**  
-   - Used `leaflet` to create an interactive base map with circle markers at each volcano’s latitude/longitude. [web:116][web:119]  
+   - Used `leaflet` to create an interactive base map with circle markers at each volcano’s latitude/longitude.
    - Colour‑coded markers by `Risk` using a discrete colour palette and added a legend explaining the bands.  
    - Enabled marker clustering for dense regions to keep the map usable at global zoom levels.  
    - Configured pop‑ups showing rich information for each volcano, including name, country, region, landform, primary type, activity evidence, risk level, last known eruption, elevation, tectonic setting, and dominant rock type.
@@ -72,7 +72,7 @@ A derived **Risk** field is created in this project as a simple band (High / Med
 
 ## Key insights
 
-- The global map highlights strong clustering of Holocene volcanoes along plate boundaries (subduction and rift zones), especially in the Pacific “Ring of Fire”. [web:112][file:1]  
+- The global map highlights strong clustering of Holocene volcanoes along plate boundaries (subduction and rift zones), especially in the Pacific “Ring of Fire”.
 - Filtering by **Activity Evidence** and **Risk** quickly reveals regions with dense clusters of recently active or well‑constrained volcanoes versus areas with uncertain or no Holocene activity.  
 - The simple risk banding and glossary help non‑specialist users interpret complex volcanic metadata (activity evidence, tectonic setting, rock type) while exploring the map interactively.
 
