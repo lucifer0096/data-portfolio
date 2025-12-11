@@ -19,9 +19,9 @@ This repository collects personal and practice projects used to build skills in 
 
 | Project                                      | Folder                      | Tools                       | Focus                                      |
 |----------------------------------------------|-----------------------------|-----------------------------|--------------------------------------------|
-| NBA 2024/25 Player Impact & Awards Analysis  | `NBA 2k23-24/`              | Excel                       | Player impact metrics, MVP/DPOY style analysis, role‑based insights |
-| Online Retail Sales & Customer Lifetime Value| `Online Retail/`            | Excel                       | Revenue, CLV, customer segmentation, time & geography patterns |
-| Global Holocene Volcano Explorer (Shiny)     | `Volcano/`                  | R, Shiny, Leaflet           | Geospatial exploration of Holocene volcanoes with simple risk banding and glossary |
+| NBA 2024/25 Player Impact & Awards Analysis  | `NBA 2k23-24 Analysis`              | Excel                       | Player impact metrics, MVP/DPOY style analysis, role‑based insights |
+| Online Retail Sales & Customer Lifetime Value| `Online Retail Sales Analysis/`            | Excel                       | Revenue, CLV, customer segmentation, time & geography patterns |
+| Global Holocene Volcano Explorer (Shiny)     | `Global Holocene Volcano Explorer (Shiny)/`                  | R, Shiny, Leaflet           | Geospatial exploration of Holocene volcanoes with simple risk banding and glossary |
 | Sample Power BI Sales Project                | `projects/sample-project/`  | Power BI, Excel, SQL (if used) | BI model, sales KPIs, report & data model hygiene |
 
 Each project folder contains:
