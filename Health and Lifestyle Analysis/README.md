@@ -115,18 +115,6 @@ The interactive app (`app.py`) exposes the analysis in four tabs:
 
 ---
 
-## 📂 Repository structure
-
-.
-├── Project.ipynb # Full EDA and feature engineering
-├── app.py # Streamlit dashboard
-├── synthetic_health_lifestyle_dataset.csv
-├── requirements.txt # Python dependencies
-├── README.md # This file
-└── /images or screenshots (optional)
-
----
-
 ## 💡 Possible extensions
 
 - Train and persist a proper ML classifier (e.g. logistic regression, gradient boosting) for chronic disease prediction and plug it into the What‑if tab.  
