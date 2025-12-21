@@ -122,3 +122,9 @@ The interactive app (`app.py`) exposes the analysis in four tabs:
 - Log interactions or selections to understand how users explore risk factors.  
 
 This project is designed to showcase end‑to‑end data work: **EDA → feature engineering → risk scoring → interactive app**.
+
+## Data source
+
+This project uses the synthetic **Health & Lifestyle Dataset** from Kaggle:  
+https://www.kaggle.com/datasets/sahilislam007/health-and-lifestyle-dataset
+
