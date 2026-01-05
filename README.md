@@ -19,7 +19,7 @@ This repository collects personal and practice projects used to build skills in 
 
 | Project | Folder | Tools | Focus |
 |--------|--------|-------|-------|
-| **Dev Employment Analytics** | `Hiring Pipeline & Applicant Insights Dashboard (Tableau)/` | ** Excel, Tableau ** | **73k Stack Overflow devs** - 53% employment rate, dynamic threshold filtering (40-70%), experience/education/gender-age breakdowns |
+| **Dev Employment Analytics** | `Hiring Pipeline & Applicant Insights Dashboard (Tableau)/` | Excel, Tableau | **73k Stack Overflow devs** - 53% employment rate, dynamic threshold filtering (40-70%), experience/education/gender-age breakdowns |
 | **Health & Lifestyle Analytics Dashboard** | `Health and Lifestyle Analysis/` | Python, Pandas, Streamlit, Plotly | End‑to‑end EDA, feature engineering, lifestyle risk scoring, and interactive health risk dashboard with What‑if simulation |
 | **NBA 2024/25 Player Impact & Awards Analysis** | `NBA 2k24-25 Analysis/` | Excel | Player impact metrics, MVP/DPOY‑style analysis, and role‑based insights |
 | **Online Retail Sales & Customer Lifetime Value** | `Online Retail Sales Analysis/` | Excel | Revenue, CLV, customer segmentation, and time/geography patterns |
