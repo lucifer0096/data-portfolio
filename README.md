@@ -1,6 +1,6 @@
-# Data Analyst Portfolio – Excel, Power BI, SQL, R, Python
+# Data Analyst Portfolio – Excel, Power BI, Tableau, SQL, R, Python
 
-Portfolio of analytics projects by **Rahul Bhaskaran**, showcasing end‑to‑end work across Excel, Power BI, SQL, R, and Python. Projects focus on turning messy business and open data into clear, decision‑ready insights, dashboards, and interactive apps.
+Portfolio of analytics projects by **Rahul Bhaskaran**, showcasing end‑to‑end work across Excel, Power BI, **Tableau**, SQL, R, and Python. Projects focus on turning messy business and open data into clear, decision‑ready insights, dashboards, and interactive apps.
 
 ---
 
@@ -19,6 +19,7 @@ This repository collects personal and practice projects used to build skills in 
 
 | Project | Folder | Tools | Focus |
 |--------|--------|-------|-------|
+| **Dev Employment Analytics** | `Dev_Employment_Analytics/` | **Tableau** | **73k Stack Overflow devs** - 53% employment rate, dynamic threshold filtering (40-70%), experience/education/gender-age breakdowns |
 | **Health & Lifestyle Analytics Dashboard** | `Health and Lifestyle Analysis/` | Python, Pandas, Streamlit, Plotly | End‑to‑end EDA, feature engineering, lifestyle risk scoring, and interactive health risk dashboard with What‑if simulation |
 | **NBA 2024/25 Player Impact & Awards Analysis** | `NBA 2k24-25 Analysis/` | Excel | Player impact metrics, MVP/DPOY‑style analysis, and role‑based insights |
 | **Online Retail Sales & Customer Lifetime Value** | `Online Retail Sales Analysis/` | Excel | Revenue, CLV, customer segmentation, and time/geography patterns |
@@ -35,14 +36,14 @@ Each project folder contains:
 
 1. Start with the **Projects** table above and click into a folder of interest.  
 2. Read the project‑level `README.md` for context, dataset details, and screenshots/diagrams (where available).  
-3. Open the associated Excel / Power BI / R / Python / Streamlit files to explore the analysis, dashboards, or app code.  
+3. Open the associated Excel / Power BI / **Tableau** / R / Python / Streamlit files to explore the analysis, dashboards, or app code.  
 4. For interactive apps (Shiny or Streamlit), follow the steps in the project README to run them locally.
 
 ---
 
 ## Skills demonstrated
 
-- **Data preparation:** Cleaning raw datasets, handling missing values, feature engineering (e.g. efficiency metrics, CLV tiers, risk bands, lifestyle risk scores).  
-- **Analysis & modelling:** Descriptive statistics, segmentation, cohort‑style views, simple scoring models, and exploratory predictive modelling.  
-- **Visualisation & storytelling:** Excel dashboards, Power BI reports, Shiny apps, Streamlit dashboards, Leaflet maps, and narrative documentation.  
-- **Tooling:** Git/GitHub for version control, reproducible analysis in R and Python, and deployment‑ready interactive apps (Shiny and Streamlit).
+- **Data preparation:** Cleaning raw datasets, handling missing values, feature engineering (e.g. efficiency metrics, CLV tiers, risk bands, lifestyle risk scores, **employment rate calcs**).  
+- **Analysis & modelling:** Descriptive statistics, segmentation, cohort‑style views, simple scoring models, **parameter-driven filtering**, and exploratory predictive modelling.  
+- **Visualisation & storytelling:** Excel dashboards, Power BI reports, **Tableau interactive dashboards**, Shiny apps, Streamlit dashboards, Leaflet maps, and narrative documentation.  
+- **Tooling:** Git/GitHub for version control, reproducible analysis in R and Python, and deployment‑ready interactive apps (Shiny, Streamlit, **Tableau Public**).
