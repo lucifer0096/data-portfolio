@@ -43,7 +43,7 @@ Each project folder contains:
 
 ## Skills demonstrated
 
-- **Data preparation:** Cleaning raw datasets, handling missing values, feature engineering (e.g. efficiency metrics, CLV tiers, risk bands, lifestyle risk scores, **employment rate calcs**).  
-- **Analysis & modelling:** Descriptive statistics, segmentation, cohort‑style views, simple scoring models, **parameter-driven filtering**, and exploratory predictive modelling.  
-- **Visualisation & storytelling:** Excel dashboards, Power BI reports, **Tableau interactive dashboards**, Shiny apps, Streamlit dashboards, Leaflet maps, and narrative documentation.  
-- **Tooling:** Git/GitHub for version control, reproducible analysis in R and Python, and deployment‑ready interactive apps (Shiny, Streamlit, **Tableau Public**).
+- **Data preparation:** Cleaning large raw datasets (10k-73k+ rows), handling missing/categorical/messy data, feature engineering (efficiency metrics, CLV tiers, risk bands, lifestyle scoring, employment rates, volcano risk banding), text-to-numeric conversion, ETL pipelines (Excel→SQL→Power BI/Tableau).
+- **Analysis & modelling:** Descriptive/inferential statistics, customer segmentation, cohort analysis/RFM, **parameter-driven what-if scenarios**, scoring models (health risk, player impact), threshold filtering, geospatial risk analysis, time-series patterns, exploratory ML foundations.
+- **Visualisation & storytelling:** **Executive KPI dashboards**, **multi-panel layouts** (horizontal/vertical containers), **parameter actions/interactivity**, color palettes (sequential/diverging), heatmaps/bar charts/treemaps, **Excel pivot dashboards**, Power BI DAX measures, **Tableau LOD calcs/parameters**, R Shiny/Streamlit apps, Leaflet geospatial maps, narrative documentation.
+- **Tooling:** **Excel** (pivot tables, Power Query), **Power BI** (DAX, dataflows), **Tableau Public** (.twbx extracts, parameter actions, container layouts), **SQL** (ETL, aggregation), **R** (Shiny, Leaflet, ggplot), **Python** (Pandas, Streamlit, Plotly), Git/GitHub version control, **cross-tool workflows** (Excel→Power BI→Tableau→Shiny).
