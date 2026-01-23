@@ -19,7 +19,7 @@ This repository collects personal and practice projects used to build skills in 
 
 | Project | Folder | Tools | Focus |
 |--------|--------|-------|-------|
-| **NZ Retail Sales Dashboard** | `excel-nz-retail-dashboard/` | **Excel** | **Stats NZ retail data** (19 regions, 2012-2025) - Pivot slicers, line/bar charts, growth heatmap showing Auckland dominance [NZ_Retail_Sales_Dashboard.pdf](excel-nz-retail-dashboard/NZ_Retail_Sales_Dashboard.pdf) |
+| **NZ Retail Sales Dashboard** | `NZ Retail Sales Dashboard/` | **Excel** | **Stats NZ retail data** (19 regions, 2012-2025) - Pivot slicers, line/bar charts, growth heatmap showing Auckland dominance |
 | **Dev Employment Analytics** | `Hiring Pipeline & Applicant Insights Dashboard (Tableau)/` | Excel, Tableau | **73k Stack Overflow devs** - 53% employment rate, dynamic threshold filtering (40-70%), experience/education/gender-age breakdowns |
 | **Health & Lifestyle Analytics Dashboard** | `Health and Lifestyle Analysis/` | Python, Pandas, Streamlit, Plotly | End‑to‑end EDA, feature engineering, lifestyle risk scoring, and interactive health risk dashboard with What‑if simulation |
 | **NBA 2024/25 Player Impact & Awards Analysis** | `NBA 2k24-25 Analysis/` | Excel | Player impact metrics, MVP/DPOY‑style analysis, and role‑based insights |
