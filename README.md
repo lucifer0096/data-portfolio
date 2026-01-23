@@ -7,7 +7,7 @@
 
 ## 📊 Projects Overview
 
-| Project | Tech Stack | Dataset | Key Deliverables | 📁 Folder |
+| Project | Tech Stack | Dataset | Key Deliverables |
 |---------|------------|---------|------------------|-----------|
 | **NZ Retail Sales** | **Excel** | Stats NZ (19 regions, 2012-25) | Pivot slicers • Growth heatmap • Regional trends |
 | **Dev Employment** | Excel, **Tableau** | 73k Stack Overflow devs | 53% employment rate • Dynamic thresholds • Demographics |
@@ -20,27 +20,11 @@
 ---
 
 ## 🎯 Skills Demonstrated
-🔧 DATA PREP
-├─ 73k+ row cleaning - Missing data - Feature engineering
-├─ NZ retail aggregation (19 regions × 14 years)
-└─ ETL: Excel→SQL→Power BI/Tableau→Shiny
-
-📊 ANALYSIS
-├─ Customer segmentation (RFM/CLV) - Cohort analysis
-├─ Parameter-driven scenarios - Risk scoring models
-├─ Time-series (YoY growth) - Geospatial patterns
-└─ Descriptive statistics - Threshold filtering
-
-📈 VISUALIZATION
-├─ Executive KPI dashboards - Multi-panel layouts
-├─ Excel slicers/heatmaps - Tableau LOD calcs
-├─ Power BI DAX - Plotly/Streamlit apps
-└─ Leaflet maps - Professional color systems
-
-🛠️ TOOLS
-├─ Excel (pivot tables, Power Query, slicers)
-├─ SQL (aggregation, CTEs, window functions)
-├─ Power BI/Tableau (parameters, actions)
-└─ Python/R (Pandas, Shiny, Streamlit)
-
-**Ready for Data Analyst roles** | **Auckland-based** | **Open to opportunities**
+📊 Data Prep (73k+ rows)
+├─ NZ retail aggregation - Feature engineering - ETL
+📈 Analysis
+├─ Segmentation - Time-series - Risk scoring
+📱 Visualization
+├─ Slicers/heatmaps - Parameter actions - Shiny apps
+🛠️ Tools
+├─ Excel/SQL/Power BI/Tableau/Python/R
