@@ -14,34 +14,36 @@ This repository collects personal and practice projects used to build skills in 
 
 ---
 
-## Projects
+## 🚀 Featured Projects
 
-| Project | Folder | Tools | Focus |
-|--------|--------|-------|-------|
-| **NZ Retail Sales Dashboard** | `Data Analyst Portfolio - Excel (NZ Retail Dashboard)/` | **Excel** | **Stats NZ data** (19 regions, 2012-2025) - Pivot slicers, line/bar charts, growth heatmap showing Auckland dominance |
-| **Dev Employment Analytics** | `Hiring Pipeline & Applicant Insights Dashboard (Tableau)/` | Excel, Tableau | **73k Stack Overflow devs** - 53% employment rate, dynamic threshold filtering (40-70%), experience/education/gender-age breakdowns |
-| **Health & Lifestyle Analytics** | `Health and Lifestyle Analysis/` | Python, Pandas, Streamlit, Plotly | End-to-end EDA, feature engineering, lifestyle risk scoring, interactive health risk dashboard |
-| **NBA 2024/25 Player Impact** | `NBA 2k24-25 Analysis/` | Excel | Player impact metrics, MVP/DPOY-style analysis, role-based insights |
-| **Online Retail Sales & CLV** | `Online Retail Sales Analysis/` | Excel | Revenue, customer lifetime value, segmentation, time/geography patterns |
-| **Global Holocene Volcano Explorer** | `Global Holocene Volcano Explorer (Shiny)/` | R, Shiny, Leaflet | Geospatial exploration of Holocene volcanoes with risk banding |
+| 🥇 **Telco Customer Churn** | 🥈 **NZ Retail Sales** | 🥉 **Dev Employment** |
+|----------------------------|----------------------|---------------------|
+| **Excel + R Shiny**<br>Telco churn analysis<br>Excel→R→Interactive app<br>`Telco Customer Churn Explorer (Excel & R)/` | **Excel**<br>Stats NZ (19 regions)<br>Pivot slicers + heatmap<br>`Data Analyst Portfolio - Excel (NZ Retail Dashboard)/` | **Excel + Tableau**<br>73k dev employment<br>Dynamic thresholds<br>`Hiring Pipeline & Applicant Insights Dashboard (Tableau)/` |
 
----
+| 🏥 **Health Analytics** | 🏀 **NBA Analysis** | 🛒 **Retail CLV** |
+|-----------------------|-------------------|------------------|
+| **Python + Streamlit**<br>Risk scoring dashboard<br>`Health and Lifestyle Analysis/` | **Excel**<br>MVP/DPOY metrics<br>`NBA 2k24-25 Analysis/` | **Excel**<br>Customer segmentation<br>`Online Retail Sales Analysis/` |
 
-## How to navigate this repo
-
-1. Start with the **Projects** table above and click into a folder of interest.  
-2. Read the project-level `README.md` for context, dataset details, and screenshots.  
-3. Open the associated Excel / Power BI / Tableau / R / Python files to explore.
+| 🌋 **Volcano Explorer** |
+|-----------------------|
+| **R Shiny + Leaflet**<br>Geospatial volcano maps<br>`Global Holocene Volcano Explorer (Shiny)/` |
 
 ---
 
-## Skills demonstrated
+## 🎯 Skills Matrix
 
-- **Data preparation:** 73k+ row cleaning, NZ retail aggregation (19 regions × 14 years), feature engineering, ETL pipelines
-- **Analysis:** Customer segmentation, cohort analysis, parameter-driven scenarios, time-series growth, risk scoring models  
-- **Visualization:** Executive KPI dashboards, Excel slicers/heatmaps, Tableau parameter actions, Power BI DAX, R Shiny apps
-- **Tooling:** Excel (pivot tables, slicers), SQL, Power BI/Tableau, Python (Pandas, Streamlit), R (Shiny), cross-tool workflows
+📊 DATA PREP 📈 ANALYSIS 📱 VISUALIZATION
+├─ 73k+ row cleaning ├─ Customer churn ├─ Executive dashboards
+├─ NZ retail (19×14) ├─ RFM/CLV models ├─ Excel slicers/maps
+├─ Feature engineering ├─ Time-series growth ├─ Tableau parameters
+└─ ETL pipelines └─ Risk scoring └─ R Shiny apps
 
----
+## 🚀 Quick Start
+**1.** Click project folder  
+**2.** Read `README.md` for insights  
+**3.** Open Excel/Python/R files  
+
+
+
 
 **Data source for NZ Retail project:** Stats NZ Retail Trade Survey via Figure.nz**
