@@ -18,15 +18,13 @@ This repository collects personal and practice projects used to build skills in 
 
 | Project | Tools | Dataset | Key Deliverables |
 |---------|-------|---------|------------------|
-| **Telco Customer Churn** | **Excel, R Shiny**, Leaflet | Telco Customer Churn | **Excel pivots → R replication → Interactive Shiny app** |
-| **NZ Retail Sales Dashboard** | **Excel** | Stats NZ (19 regions, 2012-2025) | Pivot slicers, line/bar charts, growth heatmap showing Auckland dominance |
-| **Dev Employment Analytics** | Excel, **Tableau** | 73k Stack Overflow devs | 53% employment rate, dynamic threshold filtering (40-70%), experience/education/gender-age breakdowns |
-| **Health & Lifestyle Analytics** | Python, Pandas, Streamlit, Plotly | Lifestyle survey data | End-to-end EDA, feature engineering, lifestyle risk scoring, interactive health risk dashboard |
-| **NBA 2024/25 Player Impact** | **Excel** | NBA 2k24-25 player stats | Player impact metrics, MVP/DPOY-style analysis, role-based insights |
-| **Online Retail Sales & CLV** | **Excel** | Online retail transactions | Revenue, customer lifetime value, segmentation, time/geography patterns |
-| **Volcano Explorer** | **R Shiny**, Leaflet | Global Holocene volcanoes | Geospatial risk maps • Interactive app |
-
----
+| **Telco Customer Churn** | **Excel, R Shiny** | Telco Customer Churn | End‑to‑end churn analysis – Excel pivots → R replication → interactive Shiny app for contract/service/demographic patterns |
+| **Online Retail Sales & CLV** | **Excel** | Online retail transactions | Revenue performance, customer lifetime value tiers, segmentation, time/geography patterns |
+| **NZ Retail Sales Dashboard** | **Excel** | Stats NZ (19 regions, 2012–2025) | Regional sales trends with pivot slicers, line/bar charts, and growth heatmap highlighting Auckland |
+| **Dev Employment Analytics** | Excel, **Tableau** | 73k Stack Overflow devs | Employment funnel, threshold‑based filters (40–70%), experience/education and gender–age breakdowns |
+| **Health & Lifestyle Analytics** | Python, Pandas, Streamlit, Plotly | Lifestyle survey data | E2E EDA, feature engineering, lifestyle risk score, interactive health‑risk dashboard with what‑if controls |
+| **NBA 2024/25 Player Impact** | **Excel** | NBA 2k24–25 player stats | Player impact metrics, MVP/DPOY‑style ranking, role‑based insights |
+| **Volcano Explorer** | **R Shiny**, Leaflet | Global Holocene volcanoes | Geospatial risk explorer with interactive map, filtering and glossary |
 
 ## How to navigate this repo
 
