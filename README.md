@@ -25,6 +25,7 @@ This repository collects personal and practice projects used to build skills in 
 | **Health & Lifestyle Analytics** | Python, Pandas, Streamlit, Plotly | Lifestyle survey data | E2E EDA, feature engineering, lifestyle risk score, interactive health‑risk dashboard with what‑if controls |
 | **NBA 2024/25 Player Impact** | **Excel** | NBA 2k24–25 player stats | Player impact metrics, MVP/DPOY‑style ranking, role‑based insights |
 | **Volcano Explorer** | **R Shiny**, Leaflet | Global Holocene volcanoes | Geospatial risk explorer with interactive map, filtering and glossary |
+| **Paris Airbnb Regulation** | **Pandas, Seaborn, Jupyter** | **279k global Airbnb** | **Policy impact**: -78% hosts +35% prices post-2015 cap. Time-series + € benchmarking |
 
 ## How to navigate this repo
 
@@ -36,9 +37,7 @@ This repository collects personal and practice projects used to build skills in 
 
 ## Skills demonstrated
 
-- **Data preparation:** 73k+ row cleaning, NZ retail aggregation (19 regions × 14 years), feature engineering, ETL pipelines
-- **Analysis:** Customer segmentation, cohort analysis, parameter-driven scenarios, time-series growth, risk scoring models, **churn prediction**
-- **Visualization:** Executive KPI dashboards, Excel slicers/heatmaps, **R Shiny apps**, Tableau parameter actions, Power BI DAX
-- **Tooling:** Excel (pivot tables, slicers), **SQL**, Power BI/Tableau, Python (Pandas, Streamlit), R (Shiny), cross-tool workflows
-
----
+- **Data preparation:** 279k+ row cleaning (Airbnb), NZ retail aggregation (19 regions × 14 years), feature engineering, ETL pipelines
+- **Analysis:** Customer segmentation, cohort analysis, parameter-driven scenarios, time-series growth, risk scoring models, **policy impact quantification**, churn prediction
+- **Visualization:** Executive KPI dashboards, Excel slicers/heatmaps, **R Shiny apps**, Tableau parameter actions, Power BI DAX, **dual-axis time-series**
+- **Tooling:** Excel (pivot tables, slicers), **SQL**, Power BI/Tableau, Python (Pandas, Streamlit), R (Shiny), cross-tool workflows, **€ cross-city normalization**
