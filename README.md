@@ -18,6 +18,7 @@ This repository collects personal and practice projects used to build skills in 
 
 | Project | Tools | Dataset | Key Deliverables |
 |---------|-------|---------|------------------|
+| **Kevin Cookie Company Sales Analysis** | **Tableau, Excel** | Cookie company orders & customers | Business-focused sales dashboard: daily cookies & revenue, revenue by country, top customers, rush vs standard shipment behaviour, plus BA-style problem framing and recommendations |
 | **Telco Customer Churn** | **Excel, R Shiny** | Telco Customer Churn | End‑to‑end churn analysis – Excel pivots → R replication → interactive Shiny app for contract/service/demographic patterns |
 | **Online Retail Sales & CLV** | **Excel** | Online retail transactions | Revenue performance, customer lifetime value tiers, segmentation, time/geography patterns |
 | **NZ Retail Sales Dashboard** | **Excel** | Stats NZ (19 regions, 2012–2025) | Regional sales trends with pivot slicers, line/bar charts, and growth heatmap highlighting Auckland |
@@ -27,17 +28,19 @@ This repository collects personal and practice projects used to build skills in 
 | **Volcano Explorer** | **R Shiny**, Leaflet | Global Holocene volcanoes | Geospatial risk explorer with interactive map, filtering and glossary |
 | **Paris Airbnb Regulation** | **Pandas, Seaborn, Jupyter** | **279k global Airbnb** | **Policy impact**: -78% hosts +35% prices post-2015 cap. Time-series + € benchmarking |
 
+---
+
 ## How to navigate this repo
 
-1. Start with the **Projects** table above and click into a folder of interest.  
+1. Start with the **Projects** table above and open the folder for the project you’re interested in.  
 2. Read the project-level `README.md` for context, dataset details, and screenshots.  
-3. Open the associated Excel / Power BI / Tableau / R / Python files to explore.
+3. Open the associated Excel / Power BI / Tableau / R / Python files to explore the analysis, models, and dashboards.
 
 ---
 
 ## Skills demonstrated
 
-- **Data preparation:** 279k+ row cleaning (Airbnb), NZ retail aggregation (19 regions × 14 years), feature engineering, ETL pipelines
-- **Analysis:** Customer segmentation, cohort analysis, parameter-driven scenarios, time-series growth, risk scoring models, **policy impact quantification**, churn prediction
-- **Visualization:** Executive KPI dashboards, Excel slicers/heatmaps, **R Shiny apps**, Tableau parameter actions, Power BI DAX, **dual-axis time-series**
-- **Tooling:** Excel (pivot tables, slicers), **SQL**, Power BI/Tableau, Python (Pandas, Streamlit), R (Shiny), cross-tool workflows, **€ cross-city normalization**
+- **Data preparation:** 279k+ row cleaning (Airbnb), NZ retail aggregation (19 regions × 14 years), feature engineering, ETL-style joins between customer/order tables, data type and country standardisation  
+- **Analysis:** Customer segmentation, cohort analysis, parameter-driven scenarios, time-series growth, risk scoring models, **policy impact quantification**, sales performance diagnostics, churn prediction  
+- **Visualization:** Executive KPI dashboards, Excel slicers/heatmaps, **R Shiny apps**, Tableau dashboards (maps, time-series, top-N views), Power BI DAX measures, **dual-axis time-series**  
+- **Tooling:** Excel (pivot tables, slicers), **SQL**, Power BI/Tableau, Python (Pandas, Streamlit), R (Shiny), cross-tool workflows, **€ cross-city normalization**, business-analyst style documentation and storytelling
