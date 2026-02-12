@@ -77,6 +77,3 @@ Date truncation: Day level for heatmaps
 4. Interact: Click countries/customers to cross-filter all views
 5. Publish: Tableau Public/Server for stakeholder sharing
 
-
-## Solution Overview
-
