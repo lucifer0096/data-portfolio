@@ -9,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-DATA_PATH = Path("data/gold/analyst_roles.parquet")
+DATA_PATH = Path("NZ-Jobs-Dashboard/data/gold/analyst_roles.parquet")
 DATASET_URL = "https://openjobdata.com"
 DOCS_URL = "https://openjobdata.com/documentation"
 
