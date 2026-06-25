@@ -2,6 +2,10 @@
 
 A Streamlit dashboard for exploring analyst, analytics, BI, reporting, and related job postings in New Zealand.
 
+## Live app
+
+[Open the dashboard](https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/) [web:654]
+
 ## Overview
 
 This project filters and presents analyst-related roles from a broader jobs dataset. It includes:
@@ -26,61 +30,44 @@ NZ-Jobs-Dashboard/
 └── requirements.txt
 ```
 
-## Live app
+## Deployment
 
-Deployed on Streamlit Community Cloud from:
-
+The app is deployed on Streamlit Community Cloud using:
 - Repository: `lucifer0096/data-portfolio`
 - Branch: `main`
-- App file: `NZ-Jobs-Dashboard/app/app.py`
+- App file: `NZ-Jobs-Dashboard/app/app.py` [web:654][web:716]
 
-## Data pipeline
+## Data refresh
 
-The project uses a GitHub Actions workflow to:
+The GitHub Actions workflow:
+1. runs the sync script,
+2. refreshes the parquet outputs,
+3. updates the app build marker,
+4. verifies that the app can still start correctly.
 
-1. run the sync script,
-2. refresh the parquet outputs,
-3. update a build marker file used by the app,
-4. verify that the app can still start correctly.
-
-The main workflow file is:
+Workflow file:
 
 ```text
 .github/workflows/sync-nz-jobs.yml
 ```
 
-## Manual refresh
+You can also run it manually from the **Actions** tab because the workflow uses `workflow_dispatch`. [web:868]
 
-You can trigger the workflow manually from GitHub:
+## Timestamps in the app
 
-1. Open the repository.
-2. Go to **Actions**.
-3. Select **Sync and Verify NZ Jobs App**.
-4. Click **Run workflow**.
-5. Run it on the `main` branch.
-
-GitHub supports manual workflow runs through `workflow_dispatch`.
-
-## What the timestamps mean
-
-The app shows two useful refresh signals:
-
+The app shows:
 - **Data file updated** = the modified time of the deployed parquet file.
 - **Workflow sync marker** = the timestamp written by GitHub Actions after a successful sync.
-
-The **Latest Job Posted** metric is different: it shows the newest job posting date in the dataset, not the workflow run time.
+- **Latest Job Posted** = the newest posting date in the dataset, not the workflow runtime.
 
 ## Local run
-
-Install dependencies and start the app:
 
 ```bash
 pip install -r NZ-Jobs-Dashboard/requirements.txt
 streamlit run NZ-Jobs-Dashboard/app/app.py
 ```
 
-## Notes
+## Source credit
 
-- The dashboard reads from `data/gold/analyst_roles.parquet`.
-- The app uses relative paths so it works from the repository structure used in GitHub and Streamlit Community Cloud.
-- The project is designed to reduce manual refresh steps by using GitHub Actions for scheduled and manual updates.
+This dashboard uses job-listing data from [OpenJobData](https://openjobdata.com). [web:518]  
+For dataset setup and documentation, see the [OpenJobData documentation](https://openjobdata.com/documentation). [web:98]
