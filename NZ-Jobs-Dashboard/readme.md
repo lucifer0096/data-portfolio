@@ -4,7 +4,7 @@ A Streamlit dashboard for exploring analyst, analytics, BI, reporting, and relat
 
 ## Live app
 
-[Open the dashboard](https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/) [web:654]
+[Open the dashboard](https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/)
 
 ## Overview
 
@@ -51,7 +51,7 @@ Workflow file:
 .github/workflows/sync-nz-jobs.yml
 ```
 
-You can also run it manually from the **Actions** tab because the workflow uses `workflow_dispatch`. [web:868]
+You can also run it manually from the **Actions** tab because the workflow uses `workflow_dispatch`.
 
 ## Timestamps in the app
 
@@ -69,5 +69,5 @@ streamlit run NZ-Jobs-Dashboard/app/app.py
 
 ## Source credit
 
-This dashboard uses job-listing data from [OpenJobData](https://openjobdata.com). [web:518]  
-For dataset setup and documentation, see the [OpenJobData documentation](https://openjobdata.com/documentation). [web:98]
+This dashboard uses job-listing data from [OpenJobData](https://openjobdata.com).
+For dataset setup and documentation, see the [OpenJobData documentation](https://openjobdata.com/documentation).
