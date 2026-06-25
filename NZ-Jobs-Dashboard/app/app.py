@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 from pathlib import Path
+from build_info import LAST_SYNC
 
 st.set_page_config(
     page_title="NZ Analyst Jobs Explorer",
@@ -9,7 +10,9 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-DATA_PATH = Path("NZ-Jobs-Dashboard/data/gold/analyst_roles.parquet")
+APP_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = APP_DIR.parent
+DATA_PATH = PROJECT_DIR / "data" / "gold" / "analyst_roles.parquet"
 DATASET_URL = "https://openjobdata.com"
 DOCS_URL = "https://openjobdata.com/documentation"
 
@@ -47,42 +50,6 @@ def inject_custom_css():
                 color: #dbeafe;
             }
 
-            .section-card {
-                background: rgba(30, 41, 59, 0.72);
-                border: 1px solid rgba(148, 163, 184, 0.22);
-                border-radius: 18px;
-                padding: 1.1rem 1.15rem;
-                box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
-                height: 100%;
-                color: #e2e8f0;
-            }
-
-            .section-card p {
-                color: #e2e8f0;
-                margin-bottom: 0.75rem;
-                line-height: 1.55;
-            }
-
-            .section-title {
-                font-size: 1.1rem;
-                font-weight: 700;
-                margin-bottom: 0.7rem;
-                color: #f8fafc;
-            }
-
-            .credit-box {
-                background: rgba(30, 41, 59, 0.65);
-                border: 1px solid rgba(148, 163, 184, 0.22);
-                border-radius: 18px;
-                padding: 1rem 1.1rem;
-                margin-top: 1rem;
-                color: #e2e8f0;
-            }
-
-            .credit-box a {
-                color: #60a5fa !important;
-            }
-
             .small-note {
                 color: #cbd5e1;
                 font-size: 0.95rem;
@@ -105,21 +72,8 @@ def inject_custom_css():
                 color: #f8fafc !important;
             }
 
-            div[data-testid="stMetricDelta"] {
-                color: #93c5fd !important;
-            }
-
             .stAlert {
                 border-radius: 14px;
-            }
-
-            .stTabs [data-baseweb="tab-list"] {
-                gap: 8px;
-            }
-
-            .stTabs [data-baseweb="tab"] {
-                border-radius: 10px;
-                padding: 10px 16px;
             }
 
             .stDownloadButton button,
@@ -133,9 +87,18 @@ def inject_custom_css():
     )
 
 
+def format_file_timestamp(file_mtime: float) -> str:
+    return (
+        pd.to_datetime(file_mtime, unit="s", utc=True)
+        .tz_convert("Pacific/Auckland")
+        .strftime("%Y-%m-%d %H:%M NZ")
+    )
+
+
 @st.cache_data
-def load_data(path: Path) -> pd.DataFrame:
-    df = pd.read_parquet(path)
+def load_data(path_str: str, file_mtime: float) -> pd.DataFrame:
+    _ = file_mtime
+    df = pd.read_parquet(path_str)
 
     for col in ["Date Posted", "Date Closed"]:
         if col in df.columns:
@@ -160,11 +123,7 @@ def load_data(path: Path) -> pd.DataFrame:
 
 def sidebar_navigation():
     st.sidebar.title("Navigation")
-    page = st.sidebar.radio(
-        "Go to",
-        ["Home", "Data Explorer"],
-        index=0,
-    )
+    page = st.sidebar.radio("Go to", ["Home", "Data Explorer"], index=0)
 
     st.sidebar.markdown("---")
     st.sidebar.subheader("Credits")
@@ -209,69 +168,76 @@ def apply_filters(df: pd.DataFrame) -> pd.DataFrame:
     job_groups = st.sidebar.multiselect(
         "Job Group",
         sorted([x for x in filtered["Job Group"].dropna().unique() if x])
+        if "Job Group" in filtered.columns
+        else [],
     )
 
     job_types = st.sidebar.multiselect(
         "Job Type",
         sorted([x for x in filtered["Job Type"].dropna().unique() if x])
+        if "Job Type" in filtered.columns
+        else [],
     )
 
     work_setups = st.sidebar.multiselect(
         "Work Setup",
         sorted([x for x in filtered["Work Setup"].dropna().unique() if x])
+        if "Work Setup" in filtered.columns
+        else [],
     )
 
     remote_values = st.sidebar.multiselect(
         "Remote",
         sorted([x for x in filtered["Remote"].dropna().unique() if x])
+        if "Remote" in filtered.columns
+        else [],
     )
 
-    statuses_available = sorted([x for x in filtered["Job Status"].dropna().unique() if x])
+    statuses_available = (
+        sorted([x for x in filtered["Job Status"].dropna().unique() if x])
+        if "Job Status" in filtered.columns
+        else []
+    )
     default_status = ["Active"] if "Active" in statuses_available else []
 
     statuses = st.sidebar.multiselect(
         "Job Status",
         statuses_available,
-        default=default_status
+        default=default_status,
     )
 
-    if search_text:
+    if search_text and "Job Title" in filtered.columns:
         filtered = filtered[
             filtered["Job Title"].str.contains(search_text, case=False, na=False)
         ]
 
-    if job_groups:
+    if job_groups and "Job Group" in filtered.columns:
         filtered = filtered[filtered["Job Group"].isin(job_groups)]
 
-    if job_types:
+    if job_types and "Job Type" in filtered.columns:
         filtered = filtered[filtered["Job Type"].isin(job_types)]
 
-    if work_setups:
+    if work_setups and "Work Setup" in filtered.columns:
         filtered = filtered[filtered["Work Setup"].isin(work_setups)]
 
-    if remote_values:
+    if remote_values and "Remote" in filtered.columns:
         filtered = filtered[filtered["Remote"].isin(remote_values)]
 
-    if statuses:
+    if statuses and "Job Status" in filtered.columns:
         filtered = filtered[filtered["Job Status"].isin(statuses)]
 
     sort_option = st.sidebar.selectbox(
         "Sort by",
-        [
-            "Newest posted",
-            "Oldest posted",
-            "Recently closed",
-            "Job title A-Z",
-        ]
+        ["Newest posted", "Oldest posted", "Recently closed", "Job title A-Z"],
     )
 
-    if sort_option == "Newest posted":
+    if sort_option == "Newest posted" and "Date Posted" in filtered.columns:
         filtered = filtered.sort_values("Date Posted", ascending=False, na_position="last")
-    elif sort_option == "Oldest posted":
+    elif sort_option == "Oldest posted" and "Date Posted" in filtered.columns:
         filtered = filtered.sort_values("Date Posted", ascending=True, na_position="last")
-    elif sort_option == "Recently closed":
+    elif sort_option == "Recently closed" and "Date Closed" in filtered.columns:
         filtered = filtered.sort_values("Date Closed", ascending=False, na_position="last")
-    elif sort_option == "Job title A-Z":
+    elif sort_option == "Job title A-Z" and "Job Title" in filtered.columns:
         filtered = filtered.sort_values("Job Title", ascending=True, na_position="last")
 
     return filtered.reset_index(drop=True)
@@ -288,13 +254,13 @@ def build_metrics(df: pd.DataFrame):
     c2.metric("Active jobs", active_jobs)
     c3.metric("Closed jobs", closed_jobs)
     c4.metric(
-        "Last Data Pull Date",
-        latest_posted.strftime("%Y-%m-%d") if pd.notna(latest_posted) else "N/A"
+        "Latest Job Posted",
+        latest_posted.strftime("%Y-%m-%d") if pd.notna(latest_posted) else "N/A",
     )
 
 
 def jobs_by_group_chart(df: pd.DataFrame):
-    if df.empty:
+    if df.empty or "Job Group" not in df.columns:
         st.warning("No data available for Job Group chart.")
         return
 
@@ -314,7 +280,7 @@ def jobs_by_group_chart(df: pd.DataFrame):
 
 
 def status_chart(df: pd.DataFrame):
-    if df.empty:
+    if df.empty or "Job Status" not in df.columns:
         st.warning("No data available for status chart.")
         return
 
@@ -355,7 +321,7 @@ def postings_over_time_chart(df: pd.DataFrame):
 
 
 def work_setup_chart(df: pd.DataFrame):
-    if df.empty:
+    if df.empty or "Work Setup" not in df.columns:
         st.warning("No data available for Work Setup chart.")
         return
 
@@ -374,201 +340,105 @@ def work_setup_chart(df: pd.DataFrame):
     st.bar_chart(chart_df, x="Work Setup", y="Jobs", use_container_width=True)
 
 
-def render_home(df: pd.DataFrame):
-    total_jobs = len(df)
-    active_jobs = int((df["Job Status"] == "Active").sum()) if "Job Status" in df.columns else 0
-    closed_jobs = int((df["Job Status"] == "Closed").sum()) if "Job Status" in df.columns else 0
-    latest_posted = df["Date Posted"].max() if "Date Posted" in df.columns and not df.empty else pd.NaT
+def render_sync_debug(file_updated_text: str):
+    st.caption(f"Data file updated: {file_updated_text}")
+    st.caption(f"Workflow sync marker: {LAST_SYNC}")
 
+
+def render_home(df: pd.DataFrame, file_updated_text: str):
     st.markdown(
         """
         <div class="hero-card">
             <h1>NZ Analyst Jobs Explorer</h1>
-            <p>A simple analytics app for browsing analyst, analytics, BI, reporting, and data-related jobs in New Zealand.</p>
-            <p>Use the Data Explorer page to filter postings, review trends, and open application links.</p>
+            <p>Browse analyst, analytics, BI, reporting, and related roles in New Zealand.</p>
+            <p class="small-note">The app now shows the real parquet file update time and the workflow sync marker so you can verify GitHub refreshes more easily.</p>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Total roles", total_jobs)
-    c2.metric("Active roles", active_jobs)
-    c3.metric("Closed roles", closed_jobs)
-    c4.metric(
-        "Last Data Pull Date",
-        latest_posted.strftime("%Y-%m-%d") if pd.notna(latest_posted) else "N/A"
-    )
+    build_metrics(df)
+    render_sync_debug(file_updated_text)
 
-    col1, col2 = st.columns([1.15, 1])
+    left, right = st.columns(2)
+    with left:
+        st.subheader("Jobs by group")
+        jobs_by_group_chart(df)
 
-    with col1:
-        st.markdown('<div class="section-title">About the app</div>', unsafe_allow_html=True)
-        st.markdown(
-            """
-            <div class="section-card">
-                <p>This app is built to make analyst-related job data easier to browse for non-technical users.</p>
-                <p>It focuses on plain-English fields such as Job Group, Job Title, Job Type, Work Setup, Job Status, posting dates, and direct application links.</p>
-                <p>Job Group is inferred from role titles, so it helps with quick browsing but should not be treated as a perfect classification.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+    with right:
+        st.subheader("Status mix")
+        status_chart(df)
 
-    with col2:
-        st.markdown('<div class="section-title">How to use</div>', unsafe_allow_html=True)
-        st.markdown(
-            """
-            <div class="section-card">
-                <p>1. Go to <b>Data Explorer</b> from the sidebar.</p>
-                <p>2. Filter by date posted, job group, job type, work setup, remote status, or job status.</p>
-                <p>3. Review charts for quick patterns and use the job table to open role links.</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+    left, right = st.columns(2)
+    with left:
+        st.subheader("Postings over time")
+        postings_over_time_chart(df)
 
-    st.markdown(
-        f"""
-        <div class="credit-box">
-            <div class="section-title">Credits and source</div>
-            <p class="small-note">
-                Dataset source: <a href="{DATASET_URL}" target="_blank">OpenJobData</a><br>
-                Documentation: <a href="{DOCS_URL}" target="_blank">OpenJobData Documentation</a>
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    with right:
+        st.subheader("Work setup")
+        work_setup_chart(df)
 
 
-def render_explorer(df: pd.DataFrame):
-    st.markdown(
-        """
-        <div class="hero-card">
-            <h1>Data Explorer</h1>
-            <p>Filter the dataset, review quick job-market patterns, and inspect the cleaned analyst roles table.</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+def render_data_explorer(df: pd.DataFrame, file_updated_text: str):
+    st.title("Data Explorer")
+    build_metrics(df)
+    render_sync_debug(file_updated_text)
 
-    filtered = apply_filters(df)
-    build_metrics(filtered)
+    if df.empty:
+        st.warning("No jobs match the selected filters.")
+        return
 
-    st.info(
-        "Job Group is a broad label based on words found in the job title. "
-        "Use it as a quick guide rather than a perfect classification."
-    )
+    left, right = st.columns(2)
+    with left:
+        st.subheader("Jobs by group")
+        jobs_by_group_chart(df)
 
-    tab1, tab2 = st.tabs(["Overview", "Job Table"])
+    with right:
+        st.subheader("Status mix")
+        status_chart(df)
 
-    with tab1:
-        left, right = st.columns(2)
-        with left:
-            st.subheader("Jobs by group")
-            jobs_by_group_chart(filtered)
+    display_df = df.copy()
 
-        with right:
-            st.subheader("Jobs by status")
-            status_chart(filtered)
-
-        left2, right2 = st.columns(2)
-        with left2:
-            st.subheader("Postings over time")
-            postings_over_time_chart(filtered)
-
-        with right2:
-            st.subheader("Jobs by work setup")
-            work_setup_chart(filtered)
-
-    with tab2:
-        display_cols = [
-            "Job Group",
-            "Job Title",
-            "Department",
-            "Job Type",
-            "Work Setup",
-            "Remote",
-            "Date Posted",
-            "Date Closed",
-            "Job Status",
-            "Application Link",
-        ]
-
-        available_cols = [c for c in display_cols if c in filtered.columns]
-
-        st.subheader("Job table")
-
+    st.subheader("Job table")
+    if "Application Link" in display_df.columns:
         st.dataframe(
-            filtered[available_cols],
+            display_df,
             use_container_width=True,
             hide_index=True,
             column_config={
-                "Job Group": st.column_config.TextColumn("Job Group", width="medium"),
-                "Job Title": st.column_config.TextColumn("Job Title", width="large"),
-                "Department": st.column_config.TextColumn("Department", width="medium"),
-                "Job Type": st.column_config.TextColumn("Job Type", width="small"),
-                "Work Setup": st.column_config.TextColumn("Work Setup", width="small"),
-                "Remote": st.column_config.TextColumn("Remote", width="small"),
-                "Date Posted": st.column_config.DatetimeColumn(
-                    "Date Posted",
-                    format="YYYY-MM-DD HH:mm"
-                ),
-                "Date Closed": st.column_config.DatetimeColumn(
-                    "Date Closed",
-                    format="YYYY-MM-DD HH:mm"
-                ),
-                "Job Status": st.column_config.TextColumn("Job Status", width="small"),
-                "Application Link": st.column_config.LinkColumn(
-                    "Application Link",
-                    display_text="Open job",
-                    width="medium"
-                ),
+                "Application Link": st.column_config.LinkColumn("Application Link")
             },
         )
+    else:
+        st.dataframe(display_df, use_container_width=True, hide_index=True)
 
-        csv_data = filtered[available_cols].to_csv(index=False).encode("utf-8")
-        st.download_button(
-            label="Download filtered jobs as CSV",
-            data=csv_data,
-            file_name="analyst_jobs_filtered.csv",
-            mime="text/csv"
-        )
-
-    st.markdown(
-        f"""
-        <div class="credit-box">
-            <div class="section-title">Dataset and credits</div>
-            <p class="small-note">
-                This app uses job-listing data from <a href="{DATASET_URL}" target="_blank">OpenJobData</a>.<br>
-                For setup and schema details, see the <a href="{DOCS_URL}" target="_blank">official documentation</a>.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
+    csv_data = display_df.to_csv(index=False).encode("utf-8")
+    st.download_button(
+        "Download filtered data as CSV",
+        data=csv_data,
+        file_name="nz_analyst_jobs_filtered.csv",
+        mime="text/csv",
     )
 
 
 def main():
     inject_custom_css()
+    page = sidebar_navigation()
 
     if not DATA_PATH.exists():
         st.error(f"Data file not found: {DATA_PATH}")
         st.stop()
 
-    df = load_data(DATA_PATH)
+    data_mtime = DATA_PATH.stat().st_mtime
+    file_updated_text = format_file_timestamp(data_mtime)
 
-    if df.empty:
-        st.warning("No data available.")
-        st.stop()
-
-    page = sidebar_navigation()
+    df = load_data(str(DATA_PATH), data_mtime)
+    filtered_df = apply_filters(df)
 
     if page == "Home":
-        render_home(df)
+        render_home(filtered_df, file_updated_text)
     else:
-        render_explorer(df)
+        render_data_explorer(filtered_df, file_updated_text)
 
 
 if __name__ == "__main__":
