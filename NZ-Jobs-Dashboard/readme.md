@@ -1,159 +1,86 @@
-# NZ Analyst Jobs Explorer
+# NZ Jobs Dashboard
 
-A Streamlit dashboard for exploring analyst-related job postings in New Zealand.
+A Streamlit dashboard for exploring analyst, analytics, BI, reporting, and related job postings in New Zealand.
 
-This project turns raw job listing snapshots into a cleaned analyst-focused dataset and an interactive dashboard for browsing trends, filtering roles, and opening application links. The dashboard is built on top of OpenJobData job listing data and documentation. [OpenJobData](https://openjobdata.com) [OpenJobData Documentation](https://openjobdata.com/documentation)
+## Overview
 
-## Project overview
+This project filters and presents analyst-related roles from a broader jobs dataset. It includes:
+- an interactive Streamlit dashboard,
+- cleaned parquet outputs for app use,
+- and a GitHub Actions workflow that refreshes the dataset automatically.
 
-The project has two main parts:
-
-- **Data pipeline**: downloads and merges raw job-change parquet files, filters New Zealand jobs, standardizes important fields, and creates cleaned outputs.
-- **Streamlit app**: loads the cleaned analyst roles dataset and provides a simple interface for filtering, charting, and browsing jobs.
-
-The pipeline currently:
-- downloads remote parquet change files from a Hugging Face-backed source
-- filters rows where the country is New Zealand or NZ
-- keeps a selected set of fields such as title, department, job type, work setup, status, dates, and application link
-- standardizes job type, work setup, remote flag, and status
-- creates an analyst-focused gold dataset based on job-title keyword grouping
-- exports parquet and Excel outputs
-
-## Features
-
-The Streamlit dashboard includes:
-
-- Search by job title
-- Filter by date posted
-- Filter by job group
-- Filter by job type
-- Filter by work setup
-- Filter by remote status
-- Filter by job status
-- Sort by newest posted, oldest posted, recently closed, or job title A-Z
-- KPI cards for jobs shown, active jobs, closed jobs, and latest visible posting date
-- Charts for job group, job status, postings over time, and work setup
-- A browsable cleaned analyst roles table with application links
-
-## Folder structure
+## Project structure
 
 ```text
-nz-jobs-dashboard/
+NZ-Jobs-Dashboard/
 ├── app/
-│   └── app.py
-├── scripts/
-│   └── sync_nz_jobs.py
+│   ├── app.py
+│   └── build_info.py
 ├── data/
 │   ├── gold/
 │   │   └── analyst_roles.parquet
 │   └── silver/
 │       └── nz_master.parquet
-├── requirements.txt
-├── .gitignore
-└── README.md
+├── scripts/
+│   └── sync_nz_jobs.py
+└── requirements.txt
 ```
 
-## Data outputs
+## Live app
 
-The pipeline generates these main outputs:
+Deployed on Streamlit Community Cloud from:
 
-- `data/silver/nz_master.parquet`  
-  Cleaned New Zealand jobs dataset.
+- Repository: `lucifer0096/data-portfolio`
+- Branch: `main`
+- App file: `NZ-Jobs-Dashboard/app/app.py`
 
-- `data/gold/analyst_roles.parquet`  
-  Analyst-focused dataset used by the Streamlit dashboard.
+## Data pipeline
 
-It also creates Excel outputs in the local project workflow:
+The project uses a GitHub Actions workflow to:
 
-- `data/nz_master.xlsx`
-- `data/analyst_roles.xlsx`
+1. run the sync script,
+2. refresh the parquet outputs,
+3. update a build marker file used by the app,
+4. verify that the app can still start correctly.
 
-## Key fields in the app
-
-The dashboard uses these cleaned fields:
-
-- **Job Group**: broad category inferred from words in the job title
-- **Job Title**: advertised title of the role
-- **Department**: business area or team when available
-- **Job Type**: full-time, part-time, contract, casual, fixed-term, or not specified
-- **Work Setup**: on-site, hybrid, remote, or unknown
-- **Remote**: yes, no, or unknown
-- **Date Posted**: posting date
-- **Date Closed**: close date when available
-- **Job Status**: active, closed, or unknown
-- **Application Link**: direct job listing URL
-
-## Analyst role grouping
-
-Analyst-related rows are identified from job titles using keyword-based group patterns. Current groups include:
-
-- Business Intelligence
-- Data
-- Analytics
-- Reporting
-- Insights
-- Pricing
-- Forecasting
-- Analyst
-
-This grouping is designed for simple browsing rather than perfect occupational classification.
-
-## How to run locally
-
-### 1. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Run the app
-
-From the repository root, run:
-
-```bash
-streamlit run app/app.py
-```
-
-### 3. Run the sync script
-
-```bash
-python scripts/sync_nz_jobs.py
-```
-
-## Deployment notes
-
-This app is intended for deployment with Streamlit Community Cloud.
-
-If this project sits inside a larger portfolio repository, make sure file paths in the app are relative to the **repository root**, because Community Cloud runs from the root of the GitHub repository rather than the app subfolder.
-
-Example deployment entrypoint:
+The main workflow file is:
 
 ```text
-nz-jobs-dashboard/app/app.py
+.github/workflows/sync-nz-jobs.yml
 ```
 
-## Data source
+## Manual refresh
 
-This project uses job-listing data from OpenJobData:
+You can trigger the workflow manually from GitHub:
 
-- [OpenJobData Homepage](https://openjobdata.com)
-- [OpenJobData Documentation](https://openjobdata.com/documentation)
+1. Open the repository.
+2. Go to **Actions**.
+3. Select **Sync and Verify NZ Jobs App**.
+4. Click **Run workflow**.
+5. Run it on the `main` branch.
 
-## Tech stack
+GitHub supports manual workflow runs through `workflow_dispatch`.
 
-- Python
-- Pandas
-- Streamlit
-- PyArrow
-- Hugging Face Hub
-- XlsxWriter
+## What the timestamps mean
+
+The app shows two useful refresh signals:
+
+- **Data file updated** = the modified time of the deployed parquet file.
+- **Workflow sync marker** = the timestamp written by GitHub Actions after a successful sync.
+
+The **Latest Job Posted** metric is different: it shows the newest job posting date in the dataset, not the workflow run time.
+
+## Local run
+
+Install dependencies and start the app:
+
+```bash
+pip install -r NZ-Jobs-Dashboard/requirements.txt
+streamlit run NZ-Jobs-Dashboard/app/app.py
+```
 
 ## Notes
 
-- The current dashboard is focused on analyst-related roles in New Zealand.
-- Job groups are inferred from titles, so they should be treated as a practical browsing aid rather than a formal taxonomy.
-- The app uses the cleaned gold parquet dataset for fast loading and filtering.
-
-## Author
-
-Created by Lucifer0096 as part of a broader data portfolio project.
+- The dashboard reads from `data/gold/analyst_roles.parquet`.
+- The app uses relative paths so it works from the repository structure used in GitHub and Streamlit Community Cloud.
+- The project is designed to reduce manual refresh steps by using GitHub Actions for scheduled and manual updates.
