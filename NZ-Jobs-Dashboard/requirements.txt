@@ -1,0 +1,6 @@
+streamlit
+pandas
+pyarrow
+huggingface_hub
+xlsxwriter
+openpyxl
