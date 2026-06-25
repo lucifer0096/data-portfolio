@@ -1,0 +1,58 @@
+name: Run App Check
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Sync NZ Jobs Data"]
+    types:
+      - completed
+
+jobs:
+  run-app:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r NZ-Jobs-Dashboard/requirements.txt
+
+      - name: Check data file exists
+        run: ls -lh NZ-Jobs-Dashboard/data/gold/analyst_roles.parquet
+
+      - name: Show latest dates in dataset
+        run: |
+          python - <<'PY'
+          import pandas as pd
+          from pathlib import Path
+
+          path = Path("NZ-Jobs-Dashboard/data/gold/analyst_roles.parquet")
+          df = pd.read_parquet(path)
+
+          print("Rows:", len(df))
+          if "Date Posted" in df.columns:
+              print("Max Date Posted:", pd.to_datetime(df["Date Posted"], errors="coerce").max())
+          else:
+              print("Date Posted column not found")
+          PY
+
+      - name: Compile app
+        run: python -m py_compile NZ-Jobs-Dashboard/app/app.py
+
+      - name: Start Streamlit app
+        run: |
+          timeout 30s streamlit run NZ-Jobs-Dashboard/app/app.py --server.headless true --server.port 8501 || code=$?
+          if [ "${code:-0}" -ne 0 ] && [ "${code:-0}" -ne 124 ]; then
+            exit $code
+          fi
