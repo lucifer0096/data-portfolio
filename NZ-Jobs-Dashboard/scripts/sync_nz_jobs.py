@@ -7,9 +7,10 @@ from datetime import datetime
 BUCKET_PREFIX = "buckets/Invicto69/Jobs-Dataset-bucket"
 CHANGES_DIR = f"{BUCKET_PREFIX}/data/minimal/changes"
 
-LOCAL_CHANGE_CACHE = Path(r"F:\OpenJobData\raw\changes")
-BASE_DIR = Path(r"C:\Projects\nz-jobs-dashboard\data")
+PROJECT_DIR = Path("NZ-Jobs-Dashboard")
+BASE_DIR = PROJECT_DIR / "data"
 
+LOCAL_CHANGE_CACHE = BASE_DIR / "raw" / "changes"
 RAW_NZ_DIR = BASE_DIR / "raw" / "nz_jobs"
 SILVER_DIR = BASE_DIR / "silver"
 GOLD_DIR = BASE_DIR / "gold"
