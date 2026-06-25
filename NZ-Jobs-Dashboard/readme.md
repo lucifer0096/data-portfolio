@@ -35,7 +35,7 @@ NZ-Jobs-Dashboard/
 The app is deployed on Streamlit Community Cloud using:
 - Repository: `lucifer0096/data-portfolio`
 - Branch: `main`
-- App file: `NZ-Jobs-Dashboard/app/app.py` [web:654][web:716]
+- App file: `NZ-Jobs-Dashboard/app/app.py`
 
 ## Data refresh
 
