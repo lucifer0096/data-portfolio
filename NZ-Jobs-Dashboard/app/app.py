@@ -22,89 +22,36 @@ def inject_custom_css():
         """
         <style>
             .block-container {
-                padding-top: 1.5rem;
-                padding-bottom: 2rem;
+                padding-top: 1rem;
+                padding-bottom: 1.5rem;
                 max-width: 1280px;
             }
 
-            .hero-card {
-                background: linear-gradient(135deg, #0f172a 0%, #1e293b 58%, #2563eb 100%);
-                color: #f8fafc;
-                padding: 1.5rem 1.6rem;
-                border-radius: 22px;
-                box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
-                margin-bottom: 1rem;
-            }
-
-            .hero-card h1 {
-                margin: 0 0 0.45rem 0;
-                font-size: 2rem;
-                line-height: 1.15;
-                letter-spacing: -0.02em;
-                color: #ffffff;
-            }
-
-            .hero-card p {
-                margin: 0.25rem 0;
-                color: #dbeafe;
-                line-height: 1.55;
-            }
-
-            .info-strip {
-                background: rgba(15, 23, 42, 0.72);
-                border: 1px solid rgba(148, 163, 184, 0.20);
-                border-radius: 16px;
-                padding: 0.85rem 1rem;
-                margin: 0.6rem 0 1rem 0;
-                color: #e2e8f0;
-            }
-
-            .info-strip strong {
-                color: #ffffff;
-            }
-
-            .section-card {
-                background: rgba(15, 23, 42, 0.58);
-                border: 1px solid rgba(148, 163, 184, 0.18);
-                border-radius: 18px;
-                padding: 1rem 1rem 0.8rem 1rem;
-                margin-bottom: 1rem;
-            }
-
-            .section-card h3 {
-                margin-top: 0;
-                margin-bottom: 0.5rem;
-                color: #f8fafc;
-            }
-
-            .small-note {
-                color: #cbd5e1;
-                font-size: 0.94rem;
-                line-height: 1.5;
+            .stApp [data-testid="stHeader"] {
+                background: transparent;
             }
 
             div[data-testid="stMetric"] {
-                background: rgba(15, 23, 42, 0.72);
-                border: 1px solid rgba(148, 163, 184, 0.20);
-                border-radius: 16px;
-                padding: 0.7rem 0.85rem;
-                box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+                border: 1px solid rgba(120, 120, 120, 0.18);
+                border-radius: 14px;
+                padding: 0.7rem 0.8rem;
+                background: rgba(255, 255, 255, 0.02);
             }
 
-            div[data-testid="stMetricLabel"] {
-                color: #cbd5e1 !important;
+            .meta-strip {
+                border: 1px solid rgba(120, 120, 120, 0.18);
+                border-radius: 14px;
+                padding: 0.85rem 1rem;
+                margin-top: 0.2rem;
+                margin-bottom: 1rem;
+                background: rgba(255, 255, 255, 0.02);
+                font-size: 0.95rem;
             }
 
-            div[data-testid="stMetricValue"] {
-                color: #f8fafc !important;
-            }
-
-            .footer-note {
-                margin-top: 1.25rem;
-                padding-top: 0.8rem;
-                color: #cbd5e1;
-                font-size: 0.92rem;
-                border-top: 1px solid rgba(148, 163, 184, 0.18);
+            .section-note {
+                color: #94a3b8;
+                font-size: 0.94rem;
+                line-height: 1.5;
             }
 
             .stTabs [data-baseweb="tab-list"] {
@@ -112,8 +59,8 @@ def inject_custom_css():
             }
 
             .stTabs [data-baseweb="tab"] {
-                border-radius: 12px;
-                padding: 10px 16px;
+                border-radius: 10px;
+                padding: 10px 14px;
             }
 
             .stDownloadButton button,
@@ -121,10 +68,6 @@ def inject_custom_css():
             .stForm button {
                 border-radius: 10px;
                 font-weight: 600;
-            }
-
-            .stAlert {
-                border-radius: 14px;
             }
         </style>
         """,
@@ -140,7 +83,7 @@ def format_file_timestamp(file_mtime: float) -> str:
     )
 
 
-def format_datetime_value(value) -> str:
+def format_date(value) -> str:
     if pd.isna(value):
         return "N/A"
     return pd.to_datetime(value).strftime("%Y-%m-%d")
@@ -172,11 +115,11 @@ def load_data(path_str: str, file_mtime: float) -> pd.DataFrame:
     return df
 
 
-def render_sidebar(df: pd.DataFrame):
+def render_sidebar_filters(df: pd.DataFrame) -> dict:
     st.sidebar.title("Filters")
     st.sidebar.caption("Default view shows active roles only.")
 
-    with st.sidebar.form("filter_form"):
+    with st.sidebar.form("filters_form"):
         search_text = st.text_input("Search job title")
 
         posted_dates = (
@@ -199,38 +142,24 @@ def render_sidebar(df: pd.DataFrame):
 
         job_groups = st.multiselect(
             "Job Group",
-            sorted([x for x in df["Job Group"].dropna().unique() if x])
-            if "Job Group" in df.columns
-            else [],
+            sorted([x for x in df["Job Group"].unique() if x]) if "Job Group" in df.columns else []
         )
-
         job_types = st.multiselect(
             "Job Type",
-            sorted([x for x in df["Job Type"].dropna().unique() if x])
-            if "Job Type" in df.columns
-            else [],
+            sorted([x for x in df["Job Type"].unique() if x]) if "Job Type" in df.columns else []
         )
-
         work_setups = st.multiselect(
             "Work Setup",
-            sorted([x for x in df["Work Setup"].dropna().unique() if x])
-            if "Work Setup" in df.columns
-            else [],
+            sorted([x for x in df["Work Setup"].unique() if x]) if "Work Setup" in df.columns else []
         )
-
         remote_values = st.multiselect(
             "Remote",
-            sorted([x for x in df["Remote"].dropna().unique() if x])
-            if "Remote" in df.columns
-            else [],
+            sorted([x for x in df["Remote"].unique() if x]) if "Remote" in df.columns else []
         )
 
         statuses_available = (
-            sorted([x for x in df["Job Status"].dropna().unique() if x])
-            if "Job Status" in df.columns
-            else []
+            sorted([x for x in df["Job Status"].unique() if x]) if "Job Status" in df.columns else []
         )
-
         statuses = st.multiselect(
             "Job Status",
             statuses_available,
@@ -245,11 +174,11 @@ def render_sidebar(df: pd.DataFrame):
         submitted = st.form_submit_button("Apply filters", use_container_width=True)
 
     st.sidebar.markdown("---")
-    st.sidebar.subheader("Credits")
-    st.sidebar.markdown(f"[OpenJobData homepage]({DATASET_URL})")
-    st.sidebar.markdown(f"[Dataset documentation]({DOCS_URL})")
+    st.sidebar.subheader("Source")
+    st.sidebar.markdown(f"[OpenJobData]({DATASET_URL})")
+    st.sidebar.markdown(f"[Documentation]({DOCS_URL})")
 
-    filters = {
+    return {
         "search_text": search_text,
         "selected_range": selected_range,
         "job_groups": job_groups,
@@ -260,7 +189,6 @@ def render_sidebar(df: pd.DataFrame):
         "sort_option": sort_option,
         "submitted": submitted,
     }
-    return filters
 
 
 def apply_filters(df: pd.DataFrame, filters: dict) -> pd.DataFrame:
@@ -302,7 +230,7 @@ def apply_filters(df: pd.DataFrame, filters: dict) -> pd.DataFrame:
     return filtered.reset_index(drop=True)
 
 
-def build_metrics(df: pd.DataFrame):
+def metric_row(df: pd.DataFrame):
     total_jobs = len(df)
     active_jobs = int((df["Job Status"] == "Active").sum()) if "Job Status" in df.columns else 0
     closed_jobs = int((df["Job Status"] == "Closed").sum()) if "Job Status" in df.columns else 0
@@ -312,21 +240,19 @@ def build_metrics(df: pd.DataFrame):
     c1.metric("Filtered jobs", total_jobs)
     c2.metric("Active jobs", active_jobs)
     c3.metric("Closed jobs", closed_jobs)
-    c4.metric("Latest job posted", format_datetime_value(latest_posted))
+    c4.metric("Latest job posted", format_date(latest_posted))
 
 
-def render_freshness_bar(file_updated_text: str, df: pd.DataFrame):
+def freshness_strip(df: pd.DataFrame, file_updated_text: str):
     latest_posted = df["Date Posted"].max() if "Date Posted" in df.columns and not df.empty else pd.NaT
-    latest_posted_text = format_datetime_value(latest_posted)
-
     st.markdown(
         f"""
-        <div class="info-strip">
+        <div class="meta-strip">
             <strong>Data file updated:</strong> {file_updated_text}
             &nbsp;&nbsp;|&nbsp;&nbsp;
             <strong>Workflow sync marker:</strong> {LAST_SYNC}
             &nbsp;&nbsp;|&nbsp;&nbsp;
-            <strong>Latest job posted:</strong> {latest_posted_text}
+            <strong>Latest job posted:</strong> {format_date(latest_posted)}
         </div>
         """,
         unsafe_allow_html=True,
@@ -399,79 +325,100 @@ def postings_over_time_chart(df: pd.DataFrame):
     st.line_chart(chart_df, x="Posted Day", y="Jobs", use_container_width=True)
 
 
-def render_overview_tab(df: pd.DataFrame, file_updated_text: str):
-    st.markdown(
-        """
-        <div class="hero-card">
-            <h1>NZ Analyst Jobs Explorer</h1>
-            <p>Browse analyst, analytics, BI, reporting, and data-related roles in New Zealand.</p>
-            <p>This dashboard is designed for quick job-market scanning, with filterable roles, trend charts, and direct application links.</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
+def render_header():
+    st.title("NZ Analyst Jobs Explorer")
+    st.caption(
+        "Browse analyst, analytics, BI, reporting, and data-related roles in New Zealand."
     )
 
-    build_metrics(df)
-    render_freshness_bar(file_updated_text, df)
 
-    c1, c2 = st.columns(2)
-    with c1:
-        st.subheader("Jobs by group")
-        jobs_by_group_chart(df)
+def render_overview(df: pd.DataFrame, file_updated_text: str):
+    render_header()
+    metric_row(df)
+    freshness_strip(df, file_updated_text)
 
-    with c2:
-        st.subheader("Work setup")
-        work_setup_chart(df)
+    left, right = st.columns(2)
+    with left:
+        with st.container(border=True):
+            st.subheader("Jobs by group")
+            jobs_by_group_chart(df)
 
-    c3, c4 = st.columns(2)
-    with c3:
-        st.subheader("Status mix")
-        status_chart(df)
+    with right:
+        with st.container(border=True):
+            st.subheader("Work setup")
+            work_setup_chart(df)
 
-    with c4:
-        st.subheader("Postings over time")
-        postings_over_time_chart(df)
+    left2, right2 = st.columns(2)
+    with left2:
+        with st.container(border=True):
+            st.subheader("Status mix")
+            status_chart(df)
+
+    with right2:
+        with st.container(border=True):
+            st.subheader("Postings over time")
+            postings_over_time_chart(df)
 
     with st.expander("About this dataset"):
         st.markdown(
             """
-            - The dashboard focuses on analyst, analytics, BI, reporting, and related roles in New Zealand.
-            - Job Group is inferred from role titles, so it is useful for browsing but not a perfect classification.
-            - The app shows both a file update timestamp and a workflow sync marker so refresh status is easier to verify.
+            - This app focuses on analyst, analytics, BI, reporting, and related data roles in New Zealand.
+            - Job Group is inferred from role titles and should be treated as a browsing aid rather than a perfect classification.
+            - The app includes both a file update time and a workflow sync marker to make freshness easier to verify.
             """
         )
 
 
-def render_explorer_tab(df: pd.DataFrame, file_updated_text: str):
-    st.subheader("Job Explorer")
-    st.caption("Use the sidebar filters, then review the job table and export the filtered results if needed.")
+def render_explorer(df: pd.DataFrame, file_updated_text: str):
+    render_header()
+    metric_row(df)
+    freshness_strip(df, file_updated_text)
 
-    build_metrics(df)
-    render_freshness_bar(file_updated_text, df)
+    st.markdown(
+        '<div class="section-note">Use the sidebar filters to refine roles, then browse the full job table below.</div>',
+        unsafe_allow_html=True,
+    )
 
     if df.empty:
         st.warning("No jobs match the selected filters.")
         return
 
-    display_df = df.copy()
+    display_cols = [
+        "Job Group",
+        "Job Title",
+        "Department",
+        "Job Type",
+        "Work Setup",
+        "Remote",
+        "Date Posted",
+        "Date Closed",
+        "Job Status",
+        "Application Link",
+    ]
+    available_cols = [c for c in display_cols if c in df.columns]
 
-    if "Application Link" in display_df.columns:
-        st.dataframe(
-            display_df,
-            use_container_width=True,
-            hide_index=True,
-            height=560,
-            column_config={
-                "Application Link": st.column_config.LinkColumn(
-                    "Open role",
-                    display_text="Apply"
-                )
-            },
-        )
-    else:
-        st.dataframe(display_df, use_container_width=True, hide_index=True, height=560)
+    st.dataframe(
+        df[available_cols],
+        use_container_width=True,
+        hide_index=True,
+        height=620,
+        column_config={
+            "Application Link": st.column_config.LinkColumn(
+                "Open role",
+                display_text="Apply",
+            ),
+            "Date Posted": st.column_config.DatetimeColumn(
+                "Date Posted",
+                format="YYYY-MM-DD",
+            ),
+            "Date Closed": st.column_config.DatetimeColumn(
+                "Date Closed",
+                format="YYYY-MM-DD",
+            ),
+        },
+    )
 
-    csv_data = display_df.to_csv(index=False).encode("utf-8")
+    csv_data = df[available_cols].to_csv(index=False).encode("utf-8")
     st.download_button(
         "Download filtered data as CSV",
         data=csv_data,
@@ -481,17 +428,9 @@ def render_explorer_tab(df: pd.DataFrame, file_updated_text: str):
 
 
 def render_footer():
-    st.markdown(
-        """
-        <div class="footer-note">
-            Source credit:
-            <a href="https://openjobdata.com" target="_blank">OpenJobData</a>
-            &nbsp;|&nbsp;
-            <a href="https://openjobdata.com/documentation" target="_blank">Documentation</a>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    st.markdown("---")
+    st.caption(f"Source: OpenJobData • {DATASET_URL}")
+    st.caption(f"Documentation: {DOCS_URL}")
 
 
 def main():
@@ -505,16 +444,20 @@ def main():
     file_updated_text = format_file_timestamp(data_mtime)
 
     df = load_data(str(DATA_PATH), data_mtime)
-    filters = render_sidebar(df)
+    if df.empty:
+        st.warning("No data available.")
+        st.stop()
+
+    filters = render_sidebar_filters(df)
     filtered_df = apply_filters(df, filters)
 
     tab1, tab2 = st.tabs(["Overview", "Job Explorer"])
 
     with tab1:
-        render_overview_tab(filtered_df, file_updated_text)
+        render_overview(filtered_df, file_updated_text)
 
     with tab2:
-        render_explorer_tab(filtered_df, file_updated_text)
+        render_explorer(filtered_df, file_updated_text)
 
     render_footer()
 
