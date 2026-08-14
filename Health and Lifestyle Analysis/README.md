@@ -2,6 +2,8 @@
 
 Interactive health and lifestyle risk dashboard built from a full exploratory data analysis (EDA) notebook and deployed as a Streamlit app.
 
+**[Open the live dashboard](TODO-add-streamlit-cloud-url-here)**
+
 ## Project Goal
 
 Identify and explore high-risk individuals in a synthetic population of 7,500 adults using lifestyle, BMI, sleep, stress, and chronic-disease data. The project follows a typical analyst pipeline: raw CSV → EDA in Jupyter → feature engineering → interactive Streamlit dashboard.

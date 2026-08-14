@@ -17,9 +17,10 @@ Portfolio of analytics projects by **Rahul Bhaskaran**, covering end-to-end work
 
 This repository collects personal and practice projects used to build and demonstrate skills in data analysis, visualization, dashboard design, and analytics consulting.
 
-## Featured Live App
+## Featured Live Apps
 
-**[NZ Jobs Dashboard](https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/)** — a live Streamlit app with an automated GitHub Actions data-refresh pipeline, not just a static analysis.
+- **[NZ Jobs Dashboard](https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/)** — a live Streamlit app with an automated GitHub Actions data-refresh pipeline, not just a static analysis.
+- **[Health & Lifestyle Analytics Dashboard](TODO-add-streamlit-cloud-url-here)** — a live Streamlit app with an interactive risk-scoring "what-if" explorer.
 
 ## Projects
 
@@ -31,7 +32,7 @@ This repository collects personal and practice projects used to build and demons
 | [Online Retail Sales & CLV Analysis](Online%20Retail%20Sales%20Analysis) | Excel | Online retail transactions | Revenue performance, customer lifetime value tiers, segmentation, time/geography patterns |
 | [NZ Retail Sales Dashboard](NZ%20Retail%20Sales%20Dashboard) | Excel | Stats NZ (19 regions, 2012–2025) | Regional sales trends with pivot slicers, line/bar charts, growth heatmap |
 | [Hiring Pipeline & Applicant Insights Dashboard](Hiring%20Pipeline%20%26%20Applicant%20Insights%20Dashboard%20%28Tableau%29) | Tableau | 73k+ Stack Overflow developers | Employment funnel, threshold-based filters, experience/education and gender-age breakdowns |
-| [Health & Lifestyle Analytics](Health%20and%20Lifestyle%20Analysis) | Python, Pandas, Streamlit, Plotly | Lifestyle survey data | Full EDA, feature engineering, lifestyle risk score, interactive Streamlit dashboard |
+| [Health & Lifestyle Analytics](Health%20and%20Lifestyle%20Analysis) | Python, Pandas, Streamlit, Plotly | Lifestyle survey data | Full EDA, feature engineering, lifestyle risk score, interactive Streamlit dashboard. **[Live app](TODO-add-streamlit-cloud-url-here)** |
 | [NBA 2024/25 Player Impact & Awards Analysis](NBA%202k24-25%20Analysis) | Excel | 16k+ NBA player game logs | Player impact metrics, MVP/DPOY-style ranking, role-based insights |
 | [Global Holocene Volcano Explorer](Global%20Holocene%20Volcano%20Explorer%20%28Shiny%29) | R, R Shiny, Leaflet | Smithsonian GVP Holocene volcano list | Geospatial risk explorer with interactive map, filters, and glossary |
 | [Paris Airbnb Regulation Impact Analysis](Airbnb%20Listing%20Analysis) | Python, Pandas, Seaborn, Jupyter | 279k global Airbnb listings | Policy impact analysis: −78% new hosts, +35% prices post-2015 cap; time-series + cross-city benchmarking |
