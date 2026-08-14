@@ -30,8 +30,9 @@ SLEEP_LABELS = ["≤5", "5–6", "6–7", "7–8", "8–10", ">10"]
 BMI_BINS = [0, 18.5, 25, 30, np.inf]
 BMI_LABELS = ["Underweight", "Normal", "Overweight", "Obese"]
 
-DATA_PATH = "synthetic_health_lifestyle_dataset.csv"
-MODEL_PATH = "chronic_disease_model.joblib"
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(APP_DIR, "Data", "synthetic_health_lifestyle_dataset.csv")
+MODEL_PATH = os.path.join(APP_DIR, "chronic_disease_model.joblib")
 
 NUM_FEATURES = ["Age", "BMI", "Sleep_Hours", "Stress_Level", "Lifestyle_Risk_Score"]
 CAT_FEATURES = ["Gender", "Smoker", "Exercise_Freq", "Diet_Quality", "Alcohol_Consumption"]
