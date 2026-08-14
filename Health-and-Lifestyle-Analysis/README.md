@@ -64,7 +64,7 @@ These transformations are implemented in the notebook and reused in `app.py`.
 
 ```bash
 git clone https://github.com/lucifer0096/data-portfolio.git
-cd "data-portfolio/Health and Lifestyle Analysis"
+cd data-portfolio/Health-and-Lifestyle-Analysis
 pip install -r requirements.txt
 streamlit run app.py
 ```
