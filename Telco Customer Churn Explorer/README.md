@@ -1,77 +1,86 @@
-# Telco Customer Churn Explorer (Excel & R)
+# Telco Customer Churn Explorer
 
-End‑to‑end customer churn analysis using the Telco Customer Churn dataset, starting from a raw CSV, then an Excel workbook with pivot‑table analysis and charts, followed by R replication and an interactive Shiny app.
+End-to-end customer churn analysis using the Telco Customer Churn dataset: starting from a raw CSV, through an Excel workbook with pivot-table analysis, then R replication, and finally an interactive Shiny app.
 
-## Project overview
+## Overview
 
-The goal is to understand which customers are more likely to churn and how churn varies across contracts, services, and demographics.  
-The workflow mirrors a typical analyst process: first explore in Excel, then translate the same logic into reproducible R code and finally expose the insights through a Shiny dashboard.
+The goal is to understand which customers are more likely to churn and how churn varies across contracts, services, and demographics. The workflow mirrors a typical analyst process: explore in Excel first, translate the same logic into reproducible R code, then expose the insights through a Shiny dashboard.
 
-## Files in this folder
+## Dataset
 
-In the project root (in this order):
+- **Source:** [Telco Customer Churn dataset (Kaggle)](https://www.kaggle.com/code/farazrahman/telco-customer-churn-logisticregression/input)
+- **Location in repo:** `Data/telco_customer_churn.csv`
 
-1. `telco_customer_churn.csv` – Raw dataset.  
-2. `telco_customer_churn.xlsx` – Excel workbook with pivot tables and charts.  
-3. `telco_customer_churn.R` – R script for data loading and analysis.  
-4. `app.R` – R Shiny app for interactive exploration.
+## Files in This Folder
 
-## Setup and installation (R)
+| File | Purpose |
+|---|---|
+| `Data/telco_customer_churn.csv` | Raw dataset |
+| `telco_customer_churn.xlsx` | Excel workbook with pivot tables and charts |
+| `telco_customer_churn.R` | R script for data loading and analysis |
+| `app.R` | R Shiny app for interactive exploration |
 
-1. Install R and (optionally) RStudio.  
-2. Install required R packages (adjust if your script uses fewer/more):
+## Tools & Skills
 
-install.packages(c(
-"tidyverse",
-"shiny",
-"shinydashboard", # or bs4Dash if you used it
-"DT",
-"plotly"
-))
+- Excel pivot tables and charts for initial churn exploration
+- R (tidyverse) for reproducing the analysis in code
+- R Shiny for an interactive, filterable dashboard
 
+## Business Questions
 
-3. Open this folder in RStudio or set the working directory to this folder in R.
+- Which contract types, payment methods, and services are associated with higher churn?
+- How does churn vary by tenure and customer demographics?
+- Which customer segments should be prioritized for retention efforts?
 
-## Excel analysis
+## Approach
 
-1. Open `telco_customer_churn.xlsx` in Excel.  
-2. Explore the pivot tables showing churn by contract type, payment method, tenure groups, and subscribed services.  
-3. Review the charts/dashboard that summarize the main churn insights.
+### 1. Excel analysis
+Explored pivot tables showing churn by contract type, payment method, tenure group, and subscribed services, then built charts summarizing the main patterns.
 
-## R analysis (replicating the Excel work)
+### 2. R analysis (replicating the Excel work)
+`telco_customer_churn.R` reads the raw CSV, cleans and prepares the data (type conversions, missing values, simple feature engineering), and recreates the key Excel pivot views using grouped summaries and plots.
 
-1. In RStudio (with the working directory set to this folder), run:
+### 3. Shiny app
+`app.R` exposes the same insights interactively, letting users filter by tenure, contract type, payment method, and internet service, with churn KPIs and charts updating live.
 
+## Key Insights
+
+- Month-to-month contracts show the highest churn compared to one- and two-year contracts.
+- Electronic check as a payment method correlates with elevated churn.
+- Churn is highest among lower-tenure customers and declines as tenure increases.
+- Customers without add-on services (e.g. tech support, online security) churn at a higher rate.
+
+## How to Use
+
+**Excel:**
+1. Open `telco_customer_churn.xlsx`.
+2. Review the pivot tables and charts summarizing churn drivers.
+
+**R (replicating the Excel work):**
+
+```r
+install.packages(c("tidyverse", "shiny", "shinydashboard", "DT", "plotly"))
+setwd("Telco Customer Churn Explorer")
 source("telco_customer_churn.R")
+```
 
+**Shiny app:**
 
-2. This script:
-
-- Reads `telco_customer_churn.csv`.  
-- Cleans and prepares the data (type conversions, missing values, simple feature engineering).  
-- Recreates the key Excel pivot views using grouped summaries and plots.
-
-## Shiny app
-
-1. Make sure `telco_customer_churn.R` reads the CSV using a relative path, for example:
-
-telco_raw <- readr::read_csv("telco_customer_churn.csv")
-
-
-2. From the R console:
-
+```r
 source("telco_customer_churn.R")
 shiny::runApp("app.R")
+```
 
-
-3. The Shiny app lets you:
-
-- See headline churn KPIs.  
-- Filter customers by tenure, contract type, payment method, internet service, and other attributes.  
+The app lets you:
+- See headline churn KPIs.
+- Filter by tenure, contract type, payment method, internet service, and other attributes.
 - View plots and tables that update based on the selected segment.
+
+## Future Improvements
+
+- Add a simple predictive churn model (logistic regression) and surface its output in the Shiny app.
+- Add cohort-based retention curves by signup month.
 
 ## Acknowledgements
 
-- Telco Customer Churn dataset used here for learning and portfolio purposes.
-
-https://www.kaggle.com/code/farazrahman/telco-customer-churn-logisticregression/input
+Telco Customer Churn dataset used here for learning and portfolio purposes.

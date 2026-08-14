@@ -1,4 +1,4 @@
-# Online Retail Sales & Customer Lifetime Value Analysis (Excel)
+# Online Retail Sales & Customer Lifetime Value Analysis
 
 Analyse online retail transactions to understand product performance, sales timing, geographic patterns, and customer lifetime value (CLV), and to identify high‑value customers and priority markets for growth.
 

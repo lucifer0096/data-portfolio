@@ -1,68 +1,63 @@
-# Data Analyst Portfolio – Excel, Power BI, Tableau, SQL, R, Python, Streamlit
+# Data Analyst Portfolio
 
-Portfolio of analytics projects by **Rahul Bhaskaran**, showcasing end-to-end work across Excel, Power BI, **Tableau**, SQL, R, Python, and Streamlit. Projects focus on turning messy business and open data into clear, decision-ready insights, dashboards, and interactive apps.
+![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat&logo=tableau&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=flat&logo=powerbi&logoColor=black)
+![Excel](https://img.shields.io/badge/Excel-217346?style=flat&logo=microsoftexcel&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
----
+Portfolio of analytics projects by **Rahul Bhaskaran**, covering end-to-end work across Excel, Power BI, Tableau, SQL, R, Python, and Streamlit. Projects turn messy business and open data into decision-ready insights, dashboards, and interactive apps.
 
-## About me
+## About Me
 
-- **Name:** Rahul Bhaskaran  
-- **Role:** Data Analyst / Application Specialist  
-- **Location:** New Zealand · India  
+- **Role:** Data Analyst / Application Specialist
+- **Location:** New Zealand · India
 
-This repository collects personal and practice projects used to build skills in data analysis, visualisation, dashboard design, and analytics consulting.
+This repository collects personal and practice projects used to build and demonstrate skills in data analysis, visualization, dashboard design, and analytics consulting.
 
----
+## Featured Live App
+
+**[NZ Jobs Dashboard](https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/)** — a live Streamlit app with an automated GitHub Actions data-refresh pipeline, not just a static analysis.
 
 ## Projects
 
 | Project | Tools | Dataset | Key Deliverables |
-|---------|-------|---------|------------------|
-| **British Airways Reviews** | **Tableau** | 1,300+ BA customer reviews | Dynamic service ratings dashboard: aircraft performance (A320 vs 777), geographic maps, metric parameter switching, cross-filters for route/seat/traveler insights |
-| **Kevin Cookie Company Sales Analysis** | **Tableau, Excel** | Cookie company orders & customers | Business-focused sales dashboard: daily cookies & revenue, revenue by country, top customers, rush vs standard shipment behaviour, plus BA-style problem framing and recommendations |
-| **Telco Customer Churn** | **Excel, R Shiny** | Telco Customer Churn | End-to-end churn analysis – Excel pivots → R replication → interactive Shiny app for contract/service/demographic patterns |
-| **Online Retail Sales & CLV** | **Excel** | Online retail transactions | Revenue performance, customer lifetime value tiers, segmentation, time/geography patterns |
-| **NZ Retail Sales Dashboard** | **Excel** | Stats NZ (19 regions, 2012–2025) | Regional sales trends with pivot slicers, line/bar charts, and growth heatmap highlighting Auckland |
-| **Dev Employment Analytics** | Excel, **Tableau** | 73k Stack Overflow devs | Employment funnel, threshold-based filters (40–70%), experience/education and gender–age breakdowns |
-| **Health & Lifestyle Analytics** | Python, Pandas, Streamlit, Plotly | Lifestyle survey data | E2E EDA, feature engineering, lifestyle risk score, interactive health-risk dashboard with what-if controls |
-| **NBA 2024/25 Player Impact** | **Excel** | NBA 2k24–25 player stats | Player impact metrics, MVP/DPOY-style ranking, role-based insights |
-| **Volcano Explorer** | **R Shiny**, Leaflet | Global Holocene volcanoes | Geospatial risk explorer with interactive map, filtering and glossary |
-| **Paris Airbnb Regulation** | **Pandas, Seaborn, Jupyter** | **279k global Airbnb** | **Policy impact**: -78% hosts +35% prices post-2015 cap. Time-series + € benchmarking |
-| **NZ Jobs Dashboard** | Python, Pandas, Streamlit, GitHub Actions | NZ analyst roles subset from OpenJobData | Live Streamlit dashboard for analyst, BI, reporting, and data roles in New Zealand; filterable job explorer; automated data refresh and verification workflow; parquet-based app pipeline. [Live app](https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/) |
+|---|---|---|---|
+| [British Airways Reviews](British%20Airways%20Reviews) | Tableau | 1,300+ BA customer reviews | Dynamic service-rating dashboard: aircraft performance, geographic maps, parameter switching, route/seat/traveler cross-filters |
+| [Kevin Cookie Company Sales Analysis](Cookie%20Company%20Data%20Analysis) | Tableau, Excel | Cookie company orders & customers | Sales dashboard: daily revenue, revenue by country, top customers, rush-shipment analysis, business recommendations |
+| [Telco Customer Churn Explorer](Telco%20Customer%20Churn%20Explorer) | Excel, R, R Shiny | Telco Customer Churn dataset | End-to-end churn analysis — Excel pivots → R replication → interactive Shiny app |
+| [Online Retail Sales & CLV Analysis](Online%20Retail%20Sales%20Analysis) | Excel | Online retail transactions | Revenue performance, customer lifetime value tiers, segmentation, time/geography patterns |
+| [NZ Retail Sales Dashboard](NZ%20Retail%20Sales%20Dashboard) | Excel | Stats NZ (19 regions, 2012–2025) | Regional sales trends with pivot slicers, line/bar charts, growth heatmap |
+| [Hiring Pipeline & Applicant Insights Dashboard](Hiring%20Pipeline%20%26%20Applicant%20Insights%20Dashboard%20%28Tableau%29) | Tableau | 73k+ Stack Overflow developers | Employment funnel, threshold-based filters, experience/education and gender-age breakdowns |
+| [Health & Lifestyle Analytics](Health%20and%20Lifestyle%20Analysis) | Python, Pandas, Streamlit, Plotly | Lifestyle survey data | Full EDA, feature engineering, lifestyle risk score, interactive Streamlit dashboard |
+| [NBA 2024/25 Player Impact & Awards Analysis](NBA%202k24-25%20Analysis) | Excel | 16k+ NBA player game logs | Player impact metrics, MVP/DPOY-style ranking, role-based insights |
+| [Global Holocene Volcano Explorer](Global%20Holocene%20Volcano%20Explorer%20%28Shiny%29) | R, R Shiny, Leaflet | Smithsonian GVP Holocene volcano list | Geospatial risk explorer with interactive map, filters, and glossary |
+| [Paris Airbnb Regulation Impact Analysis](Airbnb%20Listing%20Analysis) | Python, Pandas, Seaborn, Jupyter | 279k global Airbnb listings | Policy impact analysis: −78% new hosts, +35% prices post-2015 cap; time-series + cross-city benchmarking |
+| [NZ Jobs Dashboard](NZ-Jobs-Dashboard) | Python, Pandas, Streamlit, GitHub Actions | NZ analyst roles (OpenJobData) | **[Live app](https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/)** — filterable job explorer with automated data-refresh pipeline |
 
----
+## How to Navigate This Repo
 
-## Featured live app
+1. Start with the **Projects** table above and open the folder for the project you're interested in.
+2. Read the project's own `README.md` for context, dataset details, assumptions, and approach.
+3. Open the associated Excel / Power BI / Tableau / R / Python files to explore the analysis, dashboards, and apps.
 
-- **NZ Jobs Dashboard:** https://lucifer0096-nz-jobs-dashboard-app.streamlit.app/
+## Skills Demonstrated
 
----
+- **Data preparation:** large-scale cleaning (279k+ Airbnb rows, 73k+ developer records), multi-year regional aggregation, review-data normalization, feature engineering, ETL-style joins, parquet-based pipelines, automated refresh workflows
+- **Analysis:** customer segmentation, cohort analysis, parameter-driven scenarios, time-series growth, risk scoring, policy-impact quantification, churn analysis, service-performance diagnostics, job-market exploration
+- **Visualization:** executive KPI dashboards, Excel slicers/heatmaps, R Shiny apps, Tableau dashboards (maps, parameters, actions), Power BI, dual-axis time-series, Streamlit apps
+- **Tooling:** Excel (pivot tables, slicers), SQL, Power BI, Tableau, Python (Pandas, Streamlit), R (Shiny), GitHub Actions, cross-tool workflows, business-analyst-style documentation
 
-## How to navigate this repo
+## Repository Notes
 
-1. Start with the **Projects** table above and open the folder for the project you're interested in.  
-2. Read the project-level `README.md` for context, dataset details, assumptions, and screenshots.  
-3. Open the associated Excel / Power BI / Tableau / R / Python files to explore the analysis, models, dashboards, and apps.  
+Most projects are static analysis portfolios; several include interactive dashboards or apps. The NZ Jobs Dashboard also includes an automated GitHub Actions workflow that refreshes app data and verifies the deployed app can read the updated outputs.
 
----
+## License
 
-## Skills demonstrated
+This repository is licensed under the [MIT License](LICENSE).
 
-- **Data preparation:** 279k+ row cleaning (Airbnb), NZ retail aggregation (19 regions × 14 years), **1,300+ review normalization** (BA), feature engineering, ETL-style joins between customer/order tables, data type and country standardisation, parquet-based dataset preparation, and workflow-driven refresh pipelines  
-- **Analysis:** Customer segmentation, cohort analysis, parameter-driven scenarios, time-series growth, risk scoring models, **policy impact quantification (Airbnb)**, **service performance diagnostics (BA)**, sales performance diagnostics, churn prediction, and job-market exploration through role grouping and filtering  
-- **Visualization:** Executive KPI dashboards, Excel slicers/heatmaps, **R Shiny apps**, **Tableau dashboards (maps, parameters, actions)**, Power BI DAX measures, **dual-axis time-series**, and Streamlit dashboards for interactive data exploration  
-- **Tooling:** Excel (pivot tables, slicers), **SQL**, Power BI/Tableau, Python (Pandas, Streamlit), R (Shiny), GitHub Actions, cross-tool workflows, **€ cross-city normalization**, **aircraft grouping + geo-mapping**, business-analyst style documentation and storytelling  
+## Source Credit
 
----
-
-## Repository notes
-
-Some projects are static analysis portfolios, while others include interactive dashboards or apps. The NZ Jobs Dashboard project also includes an automated GitHub Actions workflow for refreshing app data and verifying that the deployed app can read updated outputs.
-
----
-
-## Source credit
-
-The **NZ Jobs Dashboard** uses job-listing data from **OpenJobData**.  
-Source: https://openjobdata.com  
-Documentation: https://openjobdata.com/documentation
+The **NZ Jobs Dashboard** uses job-listing data from [OpenJobData](https://openjobdata.com) ([documentation](https://openjobdata.com/documentation)).

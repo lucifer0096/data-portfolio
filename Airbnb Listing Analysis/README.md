@@ -1,65 +1,67 @@
-# Paris Airbnb Regulation Impact Analysis (2015) – Policy Effect Quantification
+# Paris Airbnb Regulation Impact Analysis
 
-Interactive Jupyter analysis quantifying Paris' 120-day rental cap impact using 279k global Airbnb listings (65k Paris focus). Reveals -78% new host drop and +35% price rise post-regulation, benchmarked against top cities.
+Jupyter analysis quantifying the impact of Paris's 2015 120-day short-term rental cap, using a 279k-row global Airbnb listings dataset (65k Paris-focused). Finds a 78% drop in new host growth and a 35% rise in nightly prices post-regulation, benchmarked against peer cities.
 
-📂 **Dataset**
-[Source: Maven Analytics Airbnb Listing Analysis](https://mavenanalytics.io/guided-projects/airbnb-listing-analysis) – 279k global listings scraped ~2021 (ISO-8859-1 encoding).
-**Scope**: Paris (64,690 listings, 23% total) benchmarked vs top 10 cities (NYC, Sydney, Rome, Rio etc.).
-**Key fields**:
-- `host_since`: Host join date (datetime → time-series)
-- `neighbourhood`: Paris arrondissements (80+ groups)
-- `city`: Global coverage (Paris, NYC etc.)
-- `price`: Nightly € (raw + `price_eur` normalized)
-- `accommodates`: Capacity (0-16 guests)
+## Dataset
 
-**Prep**: € conversion (Paris=1.0, Sydney=0.61, NYC=0.92), filters (`price>0`, `accommodates>0`), outliers excluded (€12k errors).
+- **Source:** [Maven Analytics – Airbnb Listing Analysis](https://mavenanalytics.io/guided-projects/airbnb-listing-analysis) (279k global listings, scraped ~2021, ISO-8859-1 encoding)
+- **Scope:** Paris (64,690 listings, 23% of total), benchmarked against 10 peer cities (NYC, Sydney, Rome, Rio, etc.)
 
-🛠️ **Tools & Skills**
-- Pandas ETL (groupby, resample 'YE', query/filtering)
-- Seaborn/Matplotlib EDA visuals (barh, dual-axis time-series)
-- Time-series analysis (host_since yearly aggregation)
-- Cross-city € normalization/benchmarking
-- Data quality (54 zero-accommodates, 62 zero-price → COVID validation)
+**Key fields**
 
-❓ **Business Questions**
-**Hosts**: Did 2015 regulation discourage new listings?  
-**Guests**: Did supply squeeze hurt affordability?  
-**Policy**: How did 120-day cap reshape Paris vs peers?
+| Field | Description |
+|---|---|
+| `host_since` | Host join date (parsed to datetime for time-series) |
+| `neighbourhood` | Paris arrondissements (80+ groups) |
+| `city` | Global city coverage |
+| `price` | Nightly rate in local currency, normalized to `price_eur` |
+| `accommodates` | Listing capacity (0–16 guests) |
 
-🔎 **Approach**
-1. **Data Cleaning**: 279k CSV → datetime `host_since` → Paris filter → € normalization.
-2. **Paris Deep-Dive**: Neighborhood agg (Elysee €210 vs Menilmontant €75), capacity scaling.
-3. **Time-Series**: Yearly resample → hosts count + avg price → dual-axis plot (2015 line).
-4. **Cross-City**: Top 10 € avg/capacity pivot → 6-panel comparison.
-5. **COVID Overlay**: 2020 cliff validates regulation signal.
+**Preparation:** currency conversion to EUR (Paris = 1.0, Sydney = 0.61, NYC = 0.92), filters for `price > 0` and `accommodates > 0`, and exclusion of outliers (listings priced above ~€12k).
 
-🔥 **Key Insights**
-- **Regulation**: Hosts -78% post-2015 (4,500→900/yr), prices +35% (€110→€150+).
-- **Paris Unique**: Sharpest drop vs peers (Sydney/NYC steady).
-- **Neighborhoods**: Elysee 3x Menilmontant (€210 vs €75).
-- **Supply Effect**: Pro hosts dominate recovery (€150+ post-COVID).
+## Tools & Skills
 
-🧪 **How to Use**
+- Pandas ETL: `groupby`, yearly resampling, filtering/querying
+- Seaborn/Matplotlib EDA (horizontal bar charts, dual-axis time-series)
+- Time-series analysis on host growth by year
+- Cross-city currency normalization and benchmarking
+- Data quality checks (zero-accommodates and zero-price records, COVID-era validation)
+
+## Business Questions
+
+- Did the 2015 regulation discourage new host listings in Paris?
+- Did the resulting supply squeeze reduce affordability for guests?
+- How did the 120-day cap reshape Paris's market relative to peer cities?
+
+## Approach
+
+1. **Data cleaning** — parsed `host_since` to datetime, filtered to Paris, normalized prices to EUR.
+2. **Paris deep-dive** — aggregated by neighbourhood (e.g. Élysée ~€210 vs. Ménilmontant ~€75) and by capacity.
+3. **Time-series** — resampled host counts and average price by year, plotted on a dual axis with the 2015 regulation marked.
+4. **Cross-city comparison** — built a pivot of average EUR price and capacity across the top 10 cities.
+5. **COVID overlay** — used the 2020 demand cliff as an independent check that the 2015 signal isn't an artifact.
+
+## Key Insights
+
+- New host growth fell ~78% after 2015 (from ~4,500/year to ~900/year).
+- Average nightly price rose ~35% (from ~€110 to ~€150+).
+- Paris shows the sharpest post-regulation drop among peer cities; Sydney and NYC stayed comparatively steady.
+- Neighbourhood prices vary roughly 3x between the most and least expensive areas (Élysée vs. Ménilmontant).
+- Professional/multi-listing hosts dominate the post-COVID price recovery (€150+).
+
+## How to Use
+
 ```bash
 pip install -r requirements.txt
 jupyter notebook Project.ipynb
+```
 
-EDA scroll: Quality → time-series → cross-city.
+Read the notebook top to bottom: data quality checks → time-series → cross-city comparison. The dual-axis regulation chart is roughly two-thirds of the way through the notebook.
 
-Dual-axis (~Cell 20): 2015 signal clear.
+## Future Improvements
 
-Static view: Project.html.
-
-🚀 Future Improvements
-
-Folium map (Paris € heatmaps—top5 sample).
-
-Streamlit dashboard (pre/post toggles).
-
-Stats tests (t-test pre/post-2015).
-
-Power BI (slicers/DAX time-intelligence).
-
-Monthly data → causal regression.
-
-text
+- Add a Folium map of Paris with per-neighbourhood price heatmaps.
+- Build a Streamlit dashboard with a pre/post-2015 toggle.
+- Run formal statistical tests (t-test) on pre/post-2015 price and host-growth differences.
+- Recreate the dashboard in Power BI using slicers and DAX time intelligence.
+- Extend to monthly-granularity data to support causal regression analysis.
