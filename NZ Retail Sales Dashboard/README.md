@@ -33,6 +33,7 @@ Interactive Excel dashboard analyzing Stats NZ Retail Trade data (2012–2025) a
 - Auckland dominates 2025 retail sales, at roughly $45B NZD.
 - Northland shows steady growth, from ~$2.1B (2012) to ~$3.7B (2025).
 - The growth heatmap makes regional divergence in trajectory easy to spot at a glance.
+- **Caveat:** these are nominal dollar figures, not adjusted for inflation or population. Part of every region's "growth" reflects NZ-wide price inflation over 2012–2025, and Auckland's lead is partly a function of it having the largest and fastest-growing population, not necessarily stronger per-capita retail performance. Read the rankings as nominal totals, not real growth or per-capita comparisons.
 
 ## Repository Files
 
