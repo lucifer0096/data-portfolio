@@ -214,8 +214,9 @@ model_rf <- randomForest(
   importance = TRUE
 )
 
-# Predict classes on test set
+# Predict classes and churn probability on test set
 telco_test$pred_rf <- predict(model_rf, newdata = telco_test, type = "class")
+telco_test$pred_prob_rf <- predict(model_rf, newdata = telco_test, type = "prob")[, "Yes"]
 
 # Confusion matrix for RF
 table(

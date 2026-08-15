@@ -56,8 +56,11 @@ ui <- fluidPage(
           "Model insights",
           h4("How to read these numbers"),
           p("This page summarises how well the models predict churn and which factors matter most."),
-          h5("Test accuracy"),
-          verbatimTextOutput("accuracy_text"),
+          p("Accuracy alone is misleading here: only about a quarter of test-set customers actually churn,",
+            "so a model that always predicts \"No churn\" would already score roughly 75% accuracy without",
+            "being useful. Precision, recall, and F1 (for the churn = \"Yes\" class) and AUC give a fuller picture."),
+          h5("Test set performance"),
+          tableOutput("metrics_table"),
           h5("Key logistic regression effects (odds ratios)"),
           tableOutput("logit_top_table"),
           h5("Random forest variable importance"),
@@ -146,19 +149,53 @@ server <- function(input, output, session) {
   })
   
   # ----------------------- Model insights --------------------------------
-  
-  # Accuracy text in plain English
-  output$accuracy_text <- renderPrint({
-    acc_logit <- mean(telco_test$Churn == telco_test$pred_class)
-    acc_rf    <- mean(telco_test$Churn == telco_test$pred_rf)
-    
-    cat(
-      "Logistic regression correctly predicts about",
-      round(acc_logit * 100, 1), "% of customers on the test set.\n",
-      "Random forest correctly predicts about",
-      round(acc_rf * 100, 1), "% of customers on the same test set."
+
+  # Precision/recall/F1/AUC for the churn = "Yes" class, plus accuracy for reference
+  binary_classification_metrics <- function(actual, predicted, prob) {
+    actual_pos    <- actual == "Yes"
+    predicted_pos <- predicted == "Yes"
+
+    tp <- sum(predicted_pos & actual_pos)
+    fp <- sum(predicted_pos & !actual_pos)
+    fn <- sum(!predicted_pos & actual_pos)
+
+    precision <- if ((tp + fp) > 0) tp / (tp + fp) else NA
+    recall    <- if ((tp + fn) > 0) tp / (tp + fn) else NA
+    f1        <- if (!is.na(precision) && !is.na(recall) && (precision + recall) > 0) {
+      2 * precision * recall / (precision + recall)
+    } else {
+      NA
+    }
+    accuracy <- mean(predicted == actual)
+
+    # Rank-based AUC (Mann-Whitney U), avoids adding a pROC/ROCR dependency
+    pos_scores <- prob[actual_pos]
+    neg_scores <- prob[!actual_pos]
+    auc <- mean(outer(pos_scores, neg_scores, ">")) +
+      0.5 * mean(outer(pos_scores, neg_scores, "=="))
+
+    data.frame(
+      Accuracy  = round(accuracy, 3),
+      Precision = round(precision, 3),
+      Recall    = round(recall, 3),
+      F1        = round(f1, 3),
+      AUC       = round(auc, 3)
     )
-  })
+  }
+
+  output$metrics_table <- renderTable({
+    logit_metrics <- binary_classification_metrics(
+      telco_test$Churn, telco_test$pred_class, telco_test$pred_prob
+    )
+    rf_metrics <- binary_classification_metrics(
+      telco_test$Churn, telco_test$pred_rf, telco_test$pred_prob_rf
+    )
+
+    cbind(
+      Model = c("Logistic regression", "Random forest"),
+      rbind(logit_metrics, rf_metrics)
+    )
+  }, rownames = FALSE)
   
   # Small odds-ratio table with only key terms
   output$logit_top_table <- renderTable({

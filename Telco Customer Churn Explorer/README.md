@@ -44,7 +44,7 @@ Explored pivot tables showing churn by contract type, payment method, tenure gro
 ### 3. Shiny app
 `app.R` exposes the same insights interactively across two tabs:
 - **Overview** — churn rate by contract, tenure band, and payment method, filterable live.
-- **Model insights** — test-set accuracy for a logistic regression and a random forest model, key logistic-regression odds ratios, and random forest variable importance.
+- **Model insights** — test-set accuracy, precision, recall, F1, and AUC (for the churn = "Yes" class) for both a logistic regression and a random forest model, plus key logistic-regression odds ratios and random forest variable importance.
 
 ## Key Insights
 
@@ -52,6 +52,7 @@ Explored pivot tables showing churn by contract type, payment method, tenure gro
 - Electronic check as a payment method correlates with elevated churn.
 - Churn is highest among lower-tenure customers and declines as tenure increases.
 - Customers without add-on services (e.g. tech support, online security) churn at a higher rate.
+- On a held-out test set (~26% churn base rate), the logistic regression scores ~80% accuracy but only ~51% recall on churners (AUC ~0.83); the random forest scores ~77% accuracy with ~53% recall (AUC ~0.81). Accuracy alone would hide this: a model that always predicts "no churn" already scores ~74% accuracy without being useful, which is why the app surfaces precision/recall/F1/AUC rather than accuracy alone.
 
 ## How to Use
 
@@ -82,8 +83,9 @@ shiny::runApp("app.R")
 
 ## Future Improvements
 
+- Address class imbalance in training (~26% churn) with class weighting or resampling to improve recall on churners.
 - Add tenure-based cohort/retention curves.
-- Let users adjust the classification threshold and see the confusion matrix update live.
+- Let users adjust the classification threshold and see precision/recall and the confusion matrix update live.
 - Deploy to shinyapps.io for a live demo link.
 
 ## Acknowledgements
