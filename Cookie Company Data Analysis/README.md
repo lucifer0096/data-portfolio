@@ -57,12 +57,19 @@ All views are cross-filtered by country and customer.
 
 ## How to Use
 
+**Open locally:**
 1. Keep `Kevin_Cookie_Company_Data.xlsx` and `Project.twb` in the same folder (Tableau auto-connects to the Excel source).
 2. Open `Project.twb` in Tableau Desktop 2025.3+.
 3. Click any country or customer to cross-filter all views.
-4. Publish to Tableau Public/Server for stakeholder sharing.
+
+**Publish to Tableau Public** *(not yet published — planned)*:
+1. Open `Project.twb` in Tableau Desktop (with `Kevin_Cookie_Company_Data.xlsx` in the same folder so the connection resolves).
+2. Sign in via **Server → Tableau Public → Save to Tableau Public As...** — this packages the Excel data into the published workbook automatically, since `.twb` alone is a live connection, not a self-contained file.
+3. Give the workbook a public-facing title and save.
+4. Copy the published view URL and add it to this README under a **Live Dashboard** link near the top.
 
 ## Future Improvements
 
 - Add a rush-vs-standard profitability breakdown as its own view.
 - Layer in a simple seasonal forecast for the next quarter.
+- Publish to Tableau Public with a direct link in this README (see above).

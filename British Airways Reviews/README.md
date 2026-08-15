@@ -36,13 +36,19 @@ Interactive Tableau dashboard analyzing 1,300+ British Airways customer reviews 
 
 ## How to Use
 
+**Open locally:**
 1. Download `Project.twbx` (self-contained) or `Project.twb` plus the `Data` folder.
 2. Open in Tableau Desktop or Tableau Public (2025.1+).
 3. Refresh extracts if needed (`Ctrl+R`).
-4. Publish to Tableau Public to share externally.
+
+**Publish to Tableau Public** *(not yet published — planned)*:
+1. Open `Project.twbx` in Tableau Desktop.
+2. Sign in via **Server → Tableau Public → Save to Tableau Public As...**
+3. Give the workbook a public-facing title and save. Tableau Public re-extracts and uploads all data automatically, since `.twbx` is self-contained.
+4. Copy the published view URL and add it to this README under a **Live Dashboard** link near the top.
 
 ## Future Improvements
 
 - Add sentiment analysis on free-text review comments.
 - Break out ground service by airport rather than just route length.
-- Publish a live version to Tableau Public with a direct link in this README.
+- Publish to Tableau Public with a direct link in this README (see above).

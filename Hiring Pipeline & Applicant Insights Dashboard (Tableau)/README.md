@@ -34,12 +34,19 @@ Interactive Tableau dashboard analyzing 73,462 Stack Overflow developer survey r
 
 ## How to Use
 
-1. Download `Project.twbx`.
-2. Open in Tableau Desktop or Tableau Public.
+**Open locally:**
+1. Keep `Project.twb` and the `Data` folder together (Tableau connects to the CSV via a relative path).
+2. Open `Project.twb` in Tableau Desktop or Tableau Public.
 3. Adjust the threshold slider to explore different employment-rate cutoffs.
 4. Use the Experience Level filter to see how segment composition changes.
+
+**Publish to Tableau Public** *(not yet published — planned)*:
+1. Open `Project.twb` in Tableau Desktop (with the `Data` folder alongside it).
+2. Sign in via **Server → Tableau Public → Save to Tableau Public As...** — this packages the CSV into the published workbook automatically, since `.twb` alone is a live connection, not a self-contained file.
+3. Give the workbook a public-facing title and save.
+4. Copy the published view URL and add it to this README under a **Live Dashboard** link near the top.
 
 ## Future Improvements
 
 - Add a role/title breakdown (e.g. data analyst vs. software engineer) alongside experience and education.
-- Publish to Tableau Public with a direct link in this README.
+- Publish to Tableau Public with a direct link in this README (see above).

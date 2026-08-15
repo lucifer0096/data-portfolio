@@ -205,3 +205,15 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Tableau
+*.twbr
+*.twbr.*
+~*.twbr
+*.hyper.lock
+*.tde.lock
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
