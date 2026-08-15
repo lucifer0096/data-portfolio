@@ -56,8 +56,9 @@ Analyse online retail transactions to understand product performance, sales timi
 - A small group of hero products (for example, gift and homeware items) drives a large share of both quantity and revenue.  
 - Sales are concentrated on specific days and peak between 10:00 and 14:00, indicating strong daytime trading patterns.  
 - A handful of European markets (Netherlands, EIRE, Germany, France, Australia) account for most non‑UK revenue.  
-- CLV is highly skewed: high‑CLV customers are a minority of the base but contribute the majority of total revenue.  
+- CLV is highly skewed: recomputing directly from the cleaned transaction data (customers with revenue > 0, cancellations excluded), the top 20% of customers by revenue generate ~75% of total revenue (top 10% generate ~61%), with a Gini coefficient of ~0.72 — a concentration sharper than the classic 80/20 rule.  
 - High‑value customers are heavily concentrated in the UK, with additional high‑value pockets in Netherlands, Germany, France, and EIRE.
+- This CLV is revenue-based, not profit-based — the dataset has no cost/margin field, so a customer with high revenue on low-margin, high-return items could be less valuable than this ranking implies. Treat CLV tiers as a revenue-concentration signal, not a direct proxy for profitability.
 
 ---
 
@@ -74,7 +75,7 @@ Analyse online retail transactions to understand product performance, sales timi
 
 ## Future improvements
 
-- Incorporate margin data to move from revenue‑based CLV to profit‑based CLV.  
+- Incorporate margin/cost data to move from revenue‑based CLV to profit‑based CLV (see caveat above).  
 - Add basic cohort and retention analysis to track customer behaviour over time.  
 - Automate data refresh using Power Query or a database connection.  
 - Build a companion Power BI report for richer interactivity and stakeholder sharing.

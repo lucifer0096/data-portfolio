@@ -26,6 +26,8 @@ Analyse game‑by‑game NBA player box‑score data to identify high‑impact p
 - **DefImpact** – Defensive impact: `STL + BLK + DRB − TOV`  
 - **RoleBand** – Role band (Starter / Key Rotation / Bench) based on average minutes played  
 
+**Note on EffSimple/DefImpact:** these are simple unweighted formulas built for this project, not validated or pace/possession-adjusted metrics like PER or BPM, and they aren't benchmarked against actual MVP/DPOY voting results. Treat "MVP/DPOY-style ranking" as illustrative of the analysis approach, not a claim that these metrics predict real award outcomes.
+
 ---
 
 ## Tools & Skills
@@ -79,7 +81,7 @@ Key pivot tables include:
 
 - High‑minute, high‑efficiency players clearly separate from league‑average contributors on both **PTS36** and **EffSimple**.  
 - Defensive specialists with strong **DefImpact** scores emerge as DPOY‑style candidates even when scoring is modest.  
-- Role‑based analysis highlights bench and key‑rotation players providing starter‑level impact in limited minutes.  
+- Role‑based analysis highlights bench and key‑rotation players providing starter‑level impact in limited minutes — though per‑36 stats for low‑minute players are noisier and more prone to small‑sample swings than for regular starters, so these should be read directionally rather than precisely.  
 - Win/loss splits reveal players whose production translates most directly into team success.  
 
 ---
@@ -96,6 +98,8 @@ Key pivot tables include:
 
 ## Future Improvements
 
+- Validate EffSimple/DefImpact against established metrics (PER, BPM, Win Shares) or actual award voting to see how well they track real outcomes.
+- Apply a minimum-minutes or games-played filter to per-36 leaderboards to reduce small-sample noise from low-minute players.
 - Incorporate on/off and lineup‑level impact metrics to complement box‑score analysis  
 - Extend the dataset to include playoffs and multi‑season trends  
 - Automate data refresh using an NBA stats API and Power Query  
