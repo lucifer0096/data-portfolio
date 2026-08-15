@@ -27,10 +27,13 @@ Interactive Tableau dashboard analyzing 73,462 Stack Overflow developer survey r
 
 ## Key Insights
 
-- Developers with 20+ years of experience have the highest employment rate (65%).
-- Master's-degree holders are employed at 58% vs. 48% for those with no higher education.
-- Men under 35 form the largest single segment (42k developers) with a 55% employment rate.
-- Raising the threshold above 60% narrows the pool to roughly the top 25% most experienced developers.
+*Verified directly against `Data/stackoverflow_full.csv` — two of the original four claims here were wrong and have been corrected below.*
+
+- Men under 35 form the largest single segment (44,343 developers) with a 55.2% employment rate — matches the original claim.
+- **Corrected:** developers with 20+ years of professional experience have essentially the same employment rate as the overall population (~52%, vs. a 53.6% baseline) — not the standout high-employment segment the dashboard originally claimed (previously stated as 65%).
+- **Corrected — direction was backwards:** NoHigherEd respondents have a *higher* employment rate (58.9%) than Master's-degree holders (48.6%), and PhD holders have the lowest rate of any group (28.6%) — the opposite of what was previously claimed. This dataset can't say why (self-selection into further study, a "PhD == still in academia" effect, correlation with age/field, etc. are all plausible and none are controlled for here), but the direction in the data is clear.
+- Raising the threshold above 60% narrows the pool to roughly the top 25% most experienced developers *(this claim describes the parameter/filter mechanic itself, not a data finding, and wasn't independently re-checked)*.
+- **Caveat:** this is a single cross-sectional survey, not a controlled study — experience, education, age, and country are all correlated with each other, so none of these rates should be read as the isolated causal effect of one factor. A developer with a PhD is also, on average, older and in a different mix of countries/roles than one with NoHigherEd; the 28.6% PhD employment rate likely reflects some mix of those factors, not "getting a PhD reduces your employability."
 
 ## How to Use
 
@@ -49,4 +52,5 @@ Interactive Tableau dashboard analyzing 73,462 Stack Overflow developer survey r
 ## Future Improvements
 
 - Add a role/title breakdown (e.g. data analyst vs. software engineer) alongside experience and education.
+- Control for confounds (age, country) when comparing education or experience groups — e.g. a simple logistic regression with multiple predictors, rather than one-way breakdowns, would separate out each factor's independent association with employment.
 - Publish to Tableau Public with a direct link in this README (see above).

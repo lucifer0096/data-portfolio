@@ -16,7 +16,7 @@ Interactive Tableau dashboard analyzing 1,300+ British Airways customer reviews 
 
 ## Business Questions
 
-- How does perceived service quality vary by aircraft type and route length?
+- How does perceived service quality vary by aircraft type and route?
 - Where are the geographic strengths and weaknesses in customer experience?
 - Which traveler segments report the highest and lowest satisfaction?
 
@@ -31,8 +31,9 @@ Interactive Tableau dashboard analyzing 1,300+ British Airways customer reviews 
 ## Key Insights
 
 - A320 flights score higher on Entertainment (avg. 6.2) than Boeing 777 (avg. 5.1).
-- Ground Service ratings dip noticeably on long-haul routes (8+ hours).
 - Business class consistently leads on Seat Comfort (avg. 8.1).
+- **Caveat:** the raw review data has no route-duration or flight-time field, only free-text route names (e.g. "London to Paris") — any long-haul-vs-short-haul comparison would need routes manually classified by duration, which isn't checked into this repo. Treat any duration-based claims as directional and unverified rather than backed by a reproducible calculation.
+- Review scores likely carry some reviewer self-selection bias, common to scraped review sites — passengers with unusually strong (especially negative) experiences are more likely to leave a review than the average traveler, so ratings may skew more extreme than the true population of BA flights.
 
 ## How to Use
 
@@ -50,5 +51,6 @@ Interactive Tableau dashboard analyzing 1,300+ British Airways customer reviews 
 ## Future Improvements
 
 - Add sentiment analysis on free-text review comments.
-- Break out ground service by airport rather than just route length.
+- Join in an actual route-distance/duration reference table (e.g. by airport pair) to make long-haul-vs-short-haul comparisons reproducible instead of manually inferred.
+- Break out ground service by airport.
 - Publish to Tableau Public with a direct link in this README (see above).

@@ -45,14 +45,14 @@ All views are cross-filtered by country and customer.
 
 - The United States dominates total revenue after country-name standardization.
 - The top 5 customers drive a disproportionate share of total revenue.
-- Rush shipments correlate with higher average order value.
 - Sales show clear daily/weekly seasonality.
+- **Correction:** rush shipments were assumed to correlate with higher average order value, but checking this directly against the raw data doesn't support it — rush orders average $2,662 vs. $2,455 for standard (n=111 vs. 89), a difference that is not statistically significant (Welch's t-test, p ≈ 0.31). On a sample this size, that's consistent with no real difference. Don't use this as a basis for rush-shipment pricing decisions without a larger sample or a different test.
 
 ## Business Recommendations
 
 1. Prioritize the top 3 countries by revenue-per-cookie for market focus.
 2. Build a VIP retention program around the top 10 revenue accounts.
-3. Review rush-shipment pricing to capture the profitability premium.
+3. Investigate rush-shipment pricing separately — the assumed profitability premium isn't statistically supported in this sample (see Key Insights).
 4. Plan inventory and staffing around identified seasonal peaks.
 
 ## How to Use
@@ -70,6 +70,6 @@ All views are cross-filtered by country and customer.
 
 ## Future Improvements
 
-- Add a rush-vs-standard profitability breakdown as its own view.
+- Revisit rush-vs-standard profitability with a larger sample — the current 200-order dataset isn't large enough to detect anything but a large effect.
 - Layer in a simple seasonal forecast for the next quarter.
 - Publish to Tableau Public with a direct link in this README (see above).
