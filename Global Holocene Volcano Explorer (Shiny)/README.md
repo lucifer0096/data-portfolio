@@ -25,7 +25,7 @@ A derived **Risk** field (High / Medium / Low / Unknown) is built from *Activity
 - R for data handling and reactive programming
 - Shiny for the multi-tab interactive application (map + glossary)
 - Leaflet for interactive mapping, marker clustering, and legends
-- Feature engineering: deriving the Risk band and preparing `volcanos.csv`
+- Feature engineering: deriving the Risk band and preparing `Data/Volcanos.csv`
 
 ## Business / Analysis Questions
 
@@ -35,7 +35,7 @@ A derived **Risk** field (High / Medium / Low / Unknown) is built from *Activity
 
 ## Approach
 
-1. **Data preparation** — exported the Holocene volcano list from the GVP search interface to `volcanos.csv`, imported into R preserving original column names, and derived the Risk band from Activity Evidence.
+1. **Data preparation** — exported the Holocene volcano list from the GVP search interface to `Data/Volcanos.csv`, imported into R preserving original column names, and derived the Risk band from Activity Evidence.
 2. **Application design** — built a Shiny `fluidPage` with two tabs: **Map** (main interactive view and filters) and **Info / Glossary** (definitions and reference images).
 3. **Reactive filtering** — a `reactive()` expression subsets the dataset by country, activity evidence, and risk band, with a live "Volcanoes shown: n" summary.
 4. **Mapping** — Leaflet circle markers color-coded by Risk, clustered for dense regions, with rich per-volcano popups (name, country, region, landform, type, activity evidence, risk, last eruption, elevation, tectonic setting, rock type).
@@ -47,22 +47,50 @@ A derived **Risk** field (High / Medium / Low / Unknown) is built from *Activity
 - Filtering by Activity Evidence and Risk quickly separates well-documented, recently active regions from areas with uncertain or no Holocene activity.
 - The simplified risk banding and glossary make dense volcanic metadata approachable for non-specialist users.
 
-## How to Use
+## Project Structure
 
-1. Ensure R and the `shiny` and `leaflet` packages are installed.
-2. Place `volcanos.csv`, `app.R` (or the script containing this code), and the reference images in the same directory.
-3. From R or RStudio, run:
-
-```r
-source("app.R")
+```text
+Global Holocene Volcano Explorer (Shiny)/
+├── app.R
+├── Data/
+│   └── Volcanos.csv
+└── www/
+    ├── Image1.png
+    └── Image2.png
 ```
 
-4. In the **Map** tab, use the Country, Activity Evidence, and Risk Level filters, and click markers for detail popups.
-5. In the **Info / Glossary** tab, review field definitions and reference images.
+`www/` holds the images referenced from the Info/Glossary tab — Shiny only serves static assets from a folder with that exact name, relative to `app.R`.
+
+## How to Use
+
+**Run locally:**
+
+1. Install R and the `shiny` and `leaflet` packages:
+
+```r
+install.packages(c("shiny", "leaflet"))
+```
+
+2. Open this folder in RStudio (or set it as your working directory), then run:
+
+```r
+shiny::runApp("app.R")
+```
+
+3. In the **Map** tab, use the Country, Activity Evidence, and Risk Level filters, and click markers for detail popups.
+4. In the **Info / Glossary** tab, review field definitions and reference images.
+
+**Deploy to shinyapps.io:**
+
+1. Install and configure `rsconnect` with your shinyapps.io account token.
+2. From this folder, run:
+
+```r
+rsconnect::deployApp()
+```
 
 ## Future Improvements
 
-- Replace any absolute CSV paths with project-relative paths and deploy to shinyapps.io.
 - Refine the risk model with population exposure, proximity to settlements, or eruption frequency.
 - Add filters for elevation band, tectonic setting, and dominant rock type.
 - Add summary charts (volcano counts by risk level and country) alongside the map.

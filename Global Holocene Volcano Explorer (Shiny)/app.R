@@ -3,9 +3,11 @@ library(shiny)
 library(leaflet)
 
 # ================== DATA LOAD =================
-# Read CSV and keep original column names (with spaces)
+# Read CSV and keep original column names (with spaces).
+# Path is relative to the app's own folder, which Shiny and
+# shinyapps.io set as the working directory at runtime.
 volcanoes <- read.csv(
-  "C:/Users/Admin/Desktop/Projects/Volcano/volcanos.csv",
+  "Data/Volcanos.csv",
   check.names = FALSE
 )
 
@@ -76,7 +78,7 @@ ui <- fluidPage(
       p("This Shiny application was built as a personal data analytics project using the Global Volcanism Program Holocene volcano list. ",
         "It demonstrates data cleaning, simple risk banding based on activity evidence, and interactive geospatial visualisation with Leaflet."),
       p("Created by Rahul Bhaskaran, Data Analyst",
-        a(href = "mailto:your.email@example.com", "rahulbhaskaran96@gmail.com"))
+        a(href = "mailto:rahulbhaskaran96@gmail.com", "rahulbhaskaran96@gmail.com"))
     )
   )
 )
