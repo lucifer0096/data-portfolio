@@ -23,7 +23,8 @@ The goal is to understand which customers are more likely to churn and how churn
 ## Tools & Skills
 
 - Excel pivot tables and charts for initial churn exploration
-- R (tidyverse) for reproducing the analysis in code
+- R (dplyr, ggplot2, readr) for reproducing the analysis in code
+- Logistic regression and random forest models (base R stats, randomForest)
 - R Shiny for an interactive, filterable dashboard
 
 ## Business Questions
@@ -41,7 +42,9 @@ Explored pivot tables showing churn by contract type, payment method, tenure gro
 `telco_customer_churn.R` reads the raw CSV, cleans and prepares the data (type conversions, missing values, simple feature engineering), and recreates the key Excel pivot views using grouped summaries and plots.
 
 ### 3. Shiny app
-`app.R` exposes the same insights interactively, letting users filter by tenure, contract type, payment method, and internet service, with churn KPIs and charts updating live.
+`app.R` exposes the same insights interactively across two tabs:
+- **Overview** — churn rate by contract, tenure band, and payment method, filterable live.
+- **Model insights** — test-set accuracy for a logistic regression and a random forest model, key logistic-regression odds ratios, and random forest variable importance.
 
 ## Key Insights
 
@@ -59,7 +62,7 @@ Explored pivot tables showing churn by contract type, payment method, tenure gro
 **R (replicating the Excel work):**
 
 ```r
-install.packages(c("tidyverse", "shiny", "shinydashboard", "DT", "plotly"))
+install.packages(c("readr", "dplyr", "stringr", "ggplot2", "scales", "randomForest"))
 setwd("Telco Customer Churn Explorer")
 source("telco_customer_churn.R")
 ```
@@ -67,19 +70,21 @@ source("telco_customer_churn.R")
 **Shiny app:**
 
 ```r
-source("telco_customer_churn.R")
+install.packages(c("shiny", "shinythemes", "dplyr", "ggplot2", "readr", "stringr", "scales", "randomForest"))
+setwd("Telco Customer Churn Explorer")
 shiny::runApp("app.R")
 ```
 
-The app lets you:
-- See headline churn KPIs.
-- Filter by tenure, contract type, payment method, internet service, and other attributes.
-- View plots and tables that update based on the selected segment.
+`app.R` sources `telco_customer_churn.R` itself, so you don't need to run it separately first. The app lets you:
+- See churn rates broken out by contract, tenure band, and payment method.
+- Filter by contract type, tenure band, and payment method.
+- Review model accuracy and the strongest churn drivers from the logistic regression and random forest.
 
 ## Future Improvements
 
-- Add a simple predictive churn model (logistic regression) and surface its output in the Shiny app.
-- Add cohort-based retention curves by signup month.
+- Add tenure-based cohort/retention curves.
+- Let users adjust the classification threshold and see the confusion matrix update live.
+- Deploy to shinyapps.io for a live demo link.
 
 ## Acknowledgements
 

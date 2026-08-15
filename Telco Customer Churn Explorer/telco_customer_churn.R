@@ -7,14 +7,14 @@ library(readr)     # reading CSV
 library(dplyr)     # data wrangling
 library(stringr)   # string helpers
 library(ggplot2)   # visualisation
+library(scales)    # percent-format axis labels
 
 
 # ======================= 1. Load raw data ===============================
 
-# Read the Telco churn CSV from your local path
-telco_raw <- read_csv(
-  "C:/Users/Admin/Desktop/Projects/Data Projects/Telco Customer Churn Explorer (R)/telco_customer_churn.csv"
-)
+# Read the Telco churn CSV. Path is relative to the app/session working
+# directory, which Shiny and shinyapps.io set to the app's root folder.
+telco_raw <- read_csv("Data/telco_customer_churn.csv")
 
 # Inspect structure: column names, types, sample values
 glimpse(telco_raw)

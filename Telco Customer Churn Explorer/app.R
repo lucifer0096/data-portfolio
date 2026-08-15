@@ -5,9 +5,13 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 library(shinythemes)
+library(readr)
+library(stringr)
+library(scales)
+library(randomForest)
 
-# Load data prep, EDA objects, and models
-source("C:/Users/Admin/Desktop/Projects/Data Projects/Telco Customer Churn Explorer (R)/telco_customer_churn.R")
+# Load data prep, EDA objects, and models (relative to this app's folder)
+source("telco_customer_churn.R")
 
 ui <- fluidPage(
   theme = shinytheme("flatly"),
