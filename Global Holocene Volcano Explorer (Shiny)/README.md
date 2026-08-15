@@ -18,14 +18,14 @@ Interactive R Shiny application built on the Smithsonian Institution's Global Vo
 | Activity | Activity Evidence, Last Known Eruption |
 | Tectonic context | Elevation (m), Tectonic Setting, Dominant Rock Type |
 
-A derived **Risk** field (High / Medium / Low / Unknown) is built from *Activity Evidence* for visualization and filtering.
+A derived **Risk** field (High / Medium / Low / Unknown) is built from *Activity Evidence* for visualization and filtering. The mapping is one-to-one and consistent throughout the data (`Eruption Dated`/`Eruption Observed` → High, `Evidence Credible` → Medium, `Evidence Uncertain` → Low, `Unrest / Holocene` → Unknown), but the derivation itself was done outside this repo (likely in the source Excel file) before being exported to `Data/Volcanos.csv` — `app.R` only reads the pre-computed `Risk` column, it doesn't derive it. See the caveat under Approach.
 
 ## Tools & Skills
 
 - R for data handling and reactive programming
 - Shiny for the multi-tab interactive application (map + glossary)
 - Leaflet for interactive mapping, marker clustering, and legends
-- Feature engineering: deriving the Risk band and preparing `Data/Volcanos.csv`
+- Data preparation: preparing `Data/Volcanos.csv` for use in R (the Risk band itself was derived upstream — see caveat under Approach)
 
 ## Business / Analysis Questions
 
@@ -35,7 +35,7 @@ A derived **Risk** field (High / Medium / Low / Unknown) is built from *Activity
 
 ## Approach
 
-1. **Data preparation** — exported the Holocene volcano list from the GVP search interface to `Data/Volcanos.csv`, imported into R preserving original column names, and derived the Risk band from Activity Evidence.
+1. **Data preparation** — exported the Holocene volcano list from the GVP search interface to `Data/Volcanos.csv`, imported into R preserving original column names. **Caveat:** the Risk band already exists as a column in `Data/Volcanos.csv` when `app.R` reads it — the Activity Evidence → Risk derivation was done upstream (outside this repo, likely in the accompanying `Volcanos.xlsx.xlsx`), not by any script checked in here. `app.R` filters and displays the Risk column; it doesn't compute it.
 2. **Application design** — built a Shiny `fluidPage` with two tabs: **Map** (main interactive view and filters) and **Info / Glossary** (definitions and reference images).
 3. **Reactive filtering** — a `reactive()` expression subsets the dataset by country, activity evidence, and risk band, with a live "Volcanoes shown: n" summary.
 4. **Mapping** — Leaflet circle markers color-coded by Risk, clustered for dense regions, with rich per-volcano popups (name, country, region, landform, type, activity evidence, risk, last eruption, elevation, tectonic setting, rock type).
@@ -91,7 +91,10 @@ rsconnect::deployApp()
 
 ## Future Improvements
 
+- Add the Activity Evidence → Risk derivation as an actual R script in this repo, rather than relying on a pre-computed column, so the mapping is transparent and reproducible.
 - Refine the risk model with population exposure, proximity to settlements, or eruption frequency.
+- Distinguish "Unknown" Activity Evidence as a data-completeness gap in the UI, rather than presenting it as a normal risk category alongside High/Medium/Low.
+- Explicitly bind the color palette to named risk levels (`c(High="red", Medium="orange", Low="yellow", Unknown="black")`) instead of positional matching, to guard against silent mis-coloring if the factor level order ever changes.
 - Add filters for elevation band, tectonic setting, and dominant rock type.
 - Add summary charts (volcano counts by risk level and country) alongside the map.
 - Support shareable filter states via URL parameters.
