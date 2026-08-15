@@ -49,7 +49,7 @@ These transformations are implemented in the notebook and reused in `app.py`.
 - **Home** — project summary, live dataset stats, top-insights narrative, tech stack table
 - **Overview** — filtered dataset preview, KPI tiles, BMI vs. exercise boxplots, stress by sleep band
 - **Risk Analysis** — chronic disease % by Risk Group / Sleep Band / BMI Category, persona summary table
-- **What-if Explorer** — interactive sliders for a hypothetical person; computes BMI category, risk components, and Lifestyle Risk Score live, with an optional model-based probability if a trained model file is present
+- **What-if Explorer** — interactive sliders for a hypothetical person; computes BMI category, risk components, and Lifestyle Risk Score live. Model-based probability is currently disabled (see Future Improvements).
 
 ## Key Insights
 
@@ -73,6 +73,7 @@ Optionally, open `Project.ipynb` to review the full EDA.
 
 ## Future Improvements
 
-- Train and persist a proper ML classifier (logistic regression or gradient boosting) for the What-if tab.
+- **Retrain the chronic-disease classifier.** The saved model (`chronic_disease_model.joblib`) predicts the negative class for every record — 0% precision/recall on `Chronic_Disease == "Yes"` across all 7,500 rows — so it's disabled in `app.py` for now. A retrain needs class-imbalance handling (`class_weight="balanced"` or resampling), since the positive class is only ~19.3% of the data, plus evaluation with precision/recall/F1/AUC rather than accuracy alone.
+- Add confidence intervals or a significance test to the chronic-disease-rate comparisons across Risk Group / Sleep Band / BMI Category, since these currently read as point estimates on a synthetic 7,500-row sample.
 - Add more filters (diet quality, exercise level, BMI category) and cohort comparisons.
 - Log user interactions to understand how people explore risk factors.

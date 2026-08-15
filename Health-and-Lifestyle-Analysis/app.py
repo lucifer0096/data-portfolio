@@ -105,12 +105,11 @@ def prepare_data(raw: pd.DataFrame) -> pd.DataFrame:
     return df
 
 def load_model(path: str):
-    if joblib is None or not os.path.exists(path):
-        return None
-    try:
-        return joblib.load(path)
-    except Exception:
-        return None
+    # Disabled: the saved classifier predicts the negative class for every
+    # record (0% precision/recall on Chronic_Disease == "Yes" across the
+    # full dataset) and carries no usable signal. Re-enable once a model
+    # with class-imbalance handling has been retrained and validated.
+    return None
 
 # -----------------------------
 # Load/prepare data and model
@@ -546,7 +545,7 @@ with tab_whatif:
                 )
         else:
             with col2:
-                st.info("✅ Model file not found - risk score still works perfectly!")
+                st.info("✅ Model-based prediction is disabled for now - the Lifestyle Risk Score above still works perfectly!")
 
 # =============================
 # Raw data expander (bottom)
